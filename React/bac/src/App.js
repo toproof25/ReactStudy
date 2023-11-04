@@ -1,16 +1,21 @@
 import React, { useState, useEffect } from 'react';
+import './App.css';
 
 export default function App() {
-  const [answer, setAnswer] = useState(['-','-','-','-']);
-  const [isStart, setIsStart] = useState(false);
-
-  const [playNum, setPlayNum] = useState([]);
+  const [answer, setAnswer] = useState(['-','-','-','-']); // 정답 배열
+  const [isStart, setIsStart] = useState(false);           // 게임 상황 확인
+  const [playNum, setPlayNum] = useState([]);              // 현재 플레이 넘버 배열
   
   useEffect(()=>{
     console.log(playNum);
   }, [playNum])
   
+
   const gameStart = () => {
+    /* 
+      게임 스타트 버튼 누를 때 실행되는 함수
+      난이도 설정 후 숫자 배정
+    */
     if(isStart) return false;
 
     let difficulty;
@@ -23,6 +28,7 @@ export default function App() {
     for(let i=1; i<=difficulty; i++){
       let numIndex = Math.floor(Math.random() * numArr.length);
       result = [...result, numArr[numIndex]]
+      // eslint-disable-next-line
       numArr = (numArr.filter( (num) => num !== numArr[numIndex]))
     }
 
@@ -40,32 +46,37 @@ export default function App() {
   return (
     <div>
       
-      <h1>Balls and Cows</h1>
+      <div id='title'>
+        <span >Balls and Cows</span>
+        <button onClick={gameStart}>시작하기</button>
+      </div>
 
-      <button onClick={gameStart}>시작하기</button>
+      <br />
       <hr />
 
       <div>
         <span style={{margin: '5px', textAlign: 'center', fontSize: '30px'}}>정답 : </span>
-        {answer.map( (answer)=>  <span
-          style={{display: 'inline-block', margin: '5px', border: 'solid 1px #ff0000', textAlign: 'center', lineHeight: '100px', fontSize: '30px', width: '100px', height: '100px'}}>
+        {answer.map( (answer, index)=> (
+          <span className='answerBox' key={index}>
             <span style={{opacity : isStart ? '0%' : '100%'}}>{answer}</span>
           </span>
-        )}
+        ))}
         <button onClick={()=>setIsStart(false)}>정답 보기</button>
       </div>
 
       <div>
         <span style={{margin: '5px', textAlign: 'center', fontSize: '30px'}}>작성 : </span>
-        {playNum.map( (num)=>  <span
-          style={{display: 'inline-block', margin: '5px', border: 'solid 1px #ff0000', textAlign: 'center', lineHeight: '100px', fontSize: '30px', width: '100px', height: '100px'}}
-          onClick={(e) => { 
-            console.log("ㅎㅇㅎㅇㅎㅇ")
-            e.target.text = "dasa"
-           }}
-          >{num}
-          </span>
-        )}
+        {playNum.map( (num, index)=> (
+          <button key={index} className='numberBox' 
+            onClick={(e) => {
+              let number = parseInt(e.target.textContent) + 1;
+              if(number === 10) number = 0;
+              e.target.textContent = number;
+              console.log("ㅎㅇㅎㅇㅎㅇ", e.target.textContent)
+            }}
+          >{num}</button> 
+        ))}
+        <button onClick={()=> console.log("확인하기") }>확인하기</button>
       </div>
 
     </div>

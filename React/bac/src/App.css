@@ -1,0 +1,38 @@
+*{ margin: 0px; padding: 0px; }
+
+body{
+  margin: 10px auto;
+  padding: 15px;
+}
+
+div#title{
+  text-align: center;
+  margin: 0 auto;
+  padding: 15px;
+  font-size: 50px;
+  font-weight: bolder;
+  background-color: #ffaaaa;
+}
+div#title button{
+  padding: 15px;
+  font-size: 30px;
+  margin-left: 20px;
+}
+
+.numberBox, .answerBox {
+  display: inline-block;
+  margin: 15px;
+  padding: 0px;
+  border: solid 1px #ff0000;
+  text-align: center;
+  line-height: 100px;
+  font-size: 30px;
+  width: 100px;
+  height: 100px;
+}
+.numberBox:hover{
+  color: #ff0000;
+  background-color: #ccc;
+  font-weight: bolder;
+  cursor: pointer;
+}
