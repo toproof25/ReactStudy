@@ -17,6 +17,7 @@ export default function App() {
     while(difficulty<1 || difficulty>10 || isNaN(difficulty)){
       difficulty = prompt("맞출 숫자 개수 설정(1개 ~ 10개) : ");
     }
+    //dsadasdasdsdsasdasdadsasdasda
 
     let numArr = [1,2,3,4,5,6,7,8,9,0]
     let result = [];
