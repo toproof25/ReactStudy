@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import './App.css';
 
 export default function App() {
@@ -6,10 +6,7 @@ export default function App() {
   const [isStart, setIsStart] = useState(false);           // 게임 상황 확인
   const [playNum, setPlayNum] = useState([]);              // 현재 플레이 넘버 배열
   
-  useEffect(()=>{
-    console.log(playNum);
-  }, [playNum])
-  
+  const playRef = [useRef(), useRef(), useRef(), useRef(), useRef(), useRef(), useRef(), useRef(), useRef(), useRef()];
 
   const gameStart = () => {
     /* 
@@ -40,7 +37,9 @@ export default function App() {
     for(let i=1; i<=amout; i++){
       result = [...result, 0];
     }
-    setPlayNum(result);
+
+    setPlayNum([...playNum, {id: 1, nums: result, SBF: [0,0,0]}]);
+    
   }
 
   return (
@@ -49,6 +48,14 @@ export default function App() {
       <div id='title'>
         <span >Balls and Cows</span>
         <button onClick={gameStart}>시작하기</button>
+        <button onClick={()=>{
+          //console.log(answer, "정답들")
+          console.log(playNum, "플레이넘버들")
+          // console.log(playRef)
+          // for(let i=0; i<answer.length; i++){
+          //   console.log(playRef[i].current.value, "----playRef")
+          // }
+        }}>정보확인</button>
       </div>
 
       <br />
@@ -64,21 +71,71 @@ export default function App() {
         <button onClick={()=>setIsStart(false)}>정답 보기</button>
       </div>
 
-      <div>
-        <span style={{margin: '5px', textAlign: 'center', fontSize: '30px'}}>작성 : </span>
-        {playNum.map( (num, index)=> (
-          <button key={index} className='numberBox' 
-            onClick={(e) => {
-              let number = parseInt(e.target.textContent) + 1;
-              if(number === 10) number = 0;
-              e.target.textContent = number;
-              console.log("ㅎㅇㅎㅇㅎㅇ", e.target.textContent)
-            }}
-          >{num}</button> 
-        ))}
-        <button onClick={()=> console.log("확인하기") }>확인하기</button>
+      <div>      
+        {playNum.map( (play, index)=> {
+          return <div style={{border: 'solid 1px blue', position: 'relative'}}>
+
+            <span style={{margin: '5px', textAlign: 'center', fontSize: '30px'}}>작성 : </span>
+            
+            {play.nums.map( (num, index)=> {
+              return <span>
+                <input 
+                  type='button' 
+                  value={num}
+                  className='numberBox' 
+                  ref={playRef[index]}
+                  onClick={(e) => {
+                    let number = parseInt(e.target.value) + 1;
+                    if(number === 10) number = 0;
+                    e.target.value = number;
+                  }} // onClick end
+                /></span>
+            }) } 
+
+            <ul style={{display: 'inline-block', border: 'solid 1px red', position: 'absolute', top:'25%', right: '10%'}}>
+              <li>S : {play.SBF[0]}</li>
+              <li>B : {play.SBF[1]}</li>
+              <li>F : {play.SBF[2]}</li>
+            </ul>
+
+          </div>
+        }) } 
       </div>
 
+      <button onClick={()=> {
+        const id = playNum[playNum.length-1].id + 1
+        let nums = []
+        for(let i=0; i<answer.length; i++){
+          nums = [...nums, parseInt(playRef[i].current.value)]
+        }
+
+        let S=0, B=0, F=0
+        for(let i=0; i<answer.length; i++){
+          if(answer.indexOf(nums[i]) >= 0){
+            if(answer[i] === nums[i])
+              S += 1;
+            else
+              B += 1;
+          }
+          else{
+            F += 1;
+          }
+        }
+        const SBF = [S,B,F]
+
+
+        const resultArr = playNum.map( (play, idx) => {
+          if(idx === playNum.length-1){
+            console.log(nums)
+            return {id: play.id, nums, SBF}
+          }
+          else return play
+        })
+
+        setPlayNum([...resultArr, {id, nums, SBF: [0,0,0]}]) // 새로 추가
+
+      } }>확인하기</button>
+      
     </div>
   );
 }
