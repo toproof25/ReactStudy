@@ -1,0 +1,95 @@
+/* 기초 설정 */
+*{ margin: 0px; padding: 0px;}
+html, body{height: 100%;}
+div.main{height: 100vh;}
+
+/* 사이트 상단 */
+header{
+  width: 100%;
+  height: 10%;
+  background-color: orchid;
+}
+
+/* 왼쪽 네비게이션 */
+nav{
+  width: 15%;
+  height: 80%;
+  background-color: lightblue;
+
+  float: left;
+}
+
+/* 왼쪽 네비게이션 ul 메뉴 설정 */
+nav > ul{
+  list-style-type: none;
+  width: 100%;
+  height: 95%;
+  overflow: auto;
+}
+nav > ul > li{
+  height: 100px;
+  background-color: antiquewhite;
+  border: 1px solid red;
+  text-align: center;
+  line-height: 100px;
+  font-size: 10px;
+}
+nav > ul > li:hover{
+  cursor: pointer;
+  background-color: #ccc;
+}
+
+/* 중앙 오른쪽 메인 강좌 설명창 */
+section{
+  width: 85%;
+  height: 80%;
+  overflow: auto;
+  float: left;
+
+  background-color: lightgreen;
+}
+section > div{
+  border: 1px solid red;
+  width: 95%;
+  height: 95%;
+  padding: 10px;
+}
+
+/* 메인 클래스(A, B) 제목 */
+section h1.classTitle{
+  padding: 20px;
+}
+
+/* 각 반에 들어있는 강좌들 */
+section > div > ul{
+  list-style-type: none;
+}
+section li.classBox{
+  background-color: lightgray;
+  border: 1px solid red;
+  width: 500px;
+  height: 100px;
+  margin-bottom: 5px;
+}
+
+/* 반 정보창 테이블 */
+table{
+  border-collapse: collapse;
+  border: 1px solid #ccc;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+}
+
+
+
+
+/* 하단 팀설명창 */
+footer{
+  clear: both;
+
+  width: 100%;
+  height: 10%;
+  background-color: lightcoral;
+}
+
