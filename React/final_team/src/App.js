@@ -56,7 +56,6 @@ export default function App() {
 
   const addClassData = (id, title, name, time) => {
     const image = './logo192.png';
-
     const value = {image, title, name, time}
 
     setCl(cl.map( c => {
@@ -80,7 +79,19 @@ export default function App() {
       </nav>
 
       <section>
-        <MainPage curPage={curPage} cl={cl} addClass={addClass} updateClass={updateClass} removeClass={removeClass} addClassData={addClassData} />
+        <div>
+          <div id='MainPage'>
+            <MainPage curPage={curPage} cl={cl} addClass={addClass} updateClass={updateClass} removeClass={removeClass} addClassData={addClassData} />
+          </div>
+          <div id='MainPage2'>
+            <h1> 페이지 제목 관리창</h1>
+            <h3> 사진 </h3>
+            <h3> 제목 </h3> 
+            <h3> 이름 </h3>
+            <h3> 날짜 / 시간 </h3>
+            <h3> 자세한 내용 </h3>
+          </div>
+        </div>
       </section>
 
       <footer>
@@ -96,12 +107,11 @@ export default function App() {
 const Header = ({setCurPage}) => {
   return(
     <div>
-      <h1> 00강의 사이트 </h1>
+      <h1> 사이트 제목 </h1>
       <button onClick={()=>setCurPage("MyPage")} >마이페이지</button>
     </div>
   );
 }
-
 // nav
 const NavBox = ({cl, setCurPage}) => <ul>
     { cl.map( (c)=> <NavList key={c.id}  id={c.id} mainTitle={c.mainTitle} setCurPage={setCurPage} /> ) }
@@ -111,8 +121,9 @@ const NavList = ({id=0, mainTitle='', setCurPage}) => <li>
   <button onClick={ ()=> {setCurPage(id)} }>{mainTitle}</button>
 </li>
 
+/* ---------------------- 중앙 메인 페이지 ---------------------- */ 
 
-// main page Class
+// main page
 const MainPage = ({curPage=0, cl, addClass, updateClass, removeClass, addClassData}) => {
 
   // 마이페이지, 각 클래스 강좌 클릭 시 중앙 페이지가 바뀌는 함수
@@ -131,28 +142,6 @@ const MainPage = ({curPage=0, cl, addClass, updateClass, removeClass, addClassDa
 // 각 강의 클릭 시
 const ClassNumber = ({id, classData, addClassData}) => {
 
-  const [isUpdate, setIsUpdate] = useState(false);
-
-  const [title, setTitle] = useState();
-  const [name, setName] = useState();
-  const [time, setTime] = useState();
-
-  const updatePage = () => {
-    if(isUpdate) return <div>
-      제목 <input type='text' value={title} onChange={(e)=>setTitle(e.target.value)} />
-      이름 <input type='text' value={name} onChange={(e)=>setName(e.target.value)} />
-      시간 <input type='text' value={time} onChange={(e)=>setTime(e.target.value)} />
-
-      <button onClick={()=>{
-        setIsUpdate(false); 
-        addClassData(id, title, name, time);
-        setTitle(''); setName(''); setTime(''); 
-      }}>추가하기</button>
-      <button onClick={()=>setIsUpdate(false)}>취소하기</button>
-    </div>
-    else return <button onClick={()=>setIsUpdate(!isUpdate)}>강의 내용 추가/수정하기</button>
-  }
-
   return(
     <div>
       <h1 className='classTitle'>{classData.page}</h1>
@@ -162,20 +151,54 @@ const ClassNumber = ({id, classData, addClassData}) => {
         } ) }
       </ul>
 
-
       <div>
-        {updatePage()}
+        <UpdatePage id={id} addClassData={addClassData} />
       </div>
     </div>
   );
 }
+
+// 강의 내용 추가 시 실행하는 함수
+const UpdatePage = ({id, addClassData}) => {
+  const [isUpdate, setIsUpdate] = useState(false);
+
+  const [title, setTitle] = useState();
+  const [name, setName] = useState();
+  const [time, setTime] = useState();
+  
+  if(isUpdate) return <div>
+    <div className='classBox'>
+      <table className='tableBox'>
+        <tr> 
+          <td rowSpan={2}> 이미지 </td> 
+          <td> 제목 <input type='text' size={10} value={title} onChange={(e)=>setTitle(e.target.value)} /> </td> 
+          <td rowSpan={2}> 시간 <input type='text' size={10} value={time} onChange={(e)=>setTime(e.target.value)} /> </td> </tr>
+        <tr> 
+          <td> 이름 <input type='text' size={10} value={name} onChange={(e)=>setName(e.target.value)} /> </td> 
+        </tr>
+      </table>
+    </div>
+
+    <button onClick={()=>{
+      setIsUpdate(false); 
+      addClassData(id, title, name, time);
+      setTitle(''); setName(''); setTime(''); 
+    }}>추가하기</button>
+    <button onClick={()=>setIsUpdate(false)}>취소하기</button>
+  </div>
+  else return <button onClick={()=>setIsUpdate(!isUpdate)}>강의 내용 추가/수정하기</button>
+}
+
+
 // 강의 정보
 const ClassBox = ({image='', title='제목', name='이름', time='날짜/시간'}) => {
   return (
-  <table>
-    <tr> <td rowSpan={2}> <img src={image} alt='이미지 없음' width={'100px'} /> </td> <td> {title} </td> <td rowSpan={2}> {time} </td> </tr>
-    <tr> <td> {name} </td> </tr>
-  </table>
+  <div className='textBt'>
+    <table className='tableBox'>
+      <tr> <td rowSpan={2}> <img src={image} alt='이미지 없음' width={'100px'} /> </td> <td> {title} </td> <td rowSpan={2}> {time} </td> </tr>
+      <tr> <td> {name} </td> </tr>
+    </table>
+  </div>
   );
 }
 
@@ -199,12 +222,4 @@ const MyPage = ({cl, addClass, updateClass, removeClass}) => {
   )
 }
 
-const UpdatePage = () => {
-  return (
-    <div>
-      제목 <input type='text' />
-      이름 <input type='text' />
-      시간 <input type='text' />
-    </div>
-  )
-}
+/* ---------------------- 중앙 메인 페이지 END ---------------------- */ 

@@ -1,6 +1,6 @@
 /* 기초 설정 */
 *{ margin: 0px; padding: 0px;}
-html, body{height: 100%;}
+html, body{height: 100%; width: 1600px; margin: 0 auto;}
 div.main{height: 100vh;}
 
 /* 사이트 상단 */
@@ -12,8 +12,8 @@ header{
 
 /* 왼쪽 네비게이션 */
 nav{
-  width: 15%;
-  height: 80%;
+  width: 10%;
+  height: 85%;
   background-color: lightblue;
 
   float: left;
@@ -43,18 +43,35 @@ nav > ul > li > button:hover {
 
 /* 중앙 오른쪽 메인 강좌 설명창 */
 section{
-  width: 85%;
-  height: 80%;
+  width: 90%;
+  height: 85%;
   overflow: auto;
   float: left;
-
   background-color: lightgreen;
 }
+section div#MainPage{
+  width: 50%;
+  height: 100%;
+  background-color: beige;
+  float: left;
+  overflow: auto;
+  text-align: center;
+}
+/* 스크롤바 기능은 유지 / 스크롤바 삭제 */
+section div#MainPage::-webkit-scrollbar{
+  display: none;
+}
+
+section div#MainPage2{
+  width: 50%;
+  height: 100%;
+  background-color: blueviolet;
+  float: left;
+  overflow: auto;
+}
 section > div{
-  border: 1px solid red;
-  width: 95%;
-  height: 95%;
-  padding: 10px;
+  overflow: hidden;
+  height: 100%;
 }
 
 /* 메인 클래스(A, B) 제목 */
@@ -63,35 +80,50 @@ section h1.classTitle{
 }
 
 /* 각 반에 들어있는 강좌들 */
-section > div > ul{
+section div#MainPage ul{
   list-style-type: none;
+  width: 80%;
+  margin: 0 auto;
 }
-section li.classBox{
+section .classBox{
   background-color: lightgray;
   border: 1px solid red;
-  width: 500px;
+  width: 100%;
   height: 100px;
   margin-bottom: 5px;
 }
 
 /* 반 정보창 테이블 */
-table{
+table.tableBox{
   border-collapse: collapse;
   border: 1px solid #ccc;
   width: 100%;
   height: 100%;
   text-align: center;
 }
+table.tableBox td:nth-child(1){
+  width: 20%;
+}
+table.tableBox td:nth-child(2){
+  width: 40%;
+}
+table.tableBox td:nth-child(3){
+  width: 40%;
+}
 
 
-
+/* 각 강의 클릭 hover test*/
+div.textBt:hover{
+  background-color: #999;
+  cursor: pointer;
+}
 
 /* 하단 팀설명창 */
 footer{
   clear: both;
 
   width: 100%;
-  height: 10%;
+  height: 5%;
   background-color: lightcoral;
 }
 
