@@ -32,7 +32,7 @@ nav ul > li > button {
   background-color: antiquewhite;
   text-align: center;
   line-height: 100px;
-  font-size: 20px;
+  font-size: auto;
   overflow: hidden;
   margin: 3px 0 3px 0 ;
 }
