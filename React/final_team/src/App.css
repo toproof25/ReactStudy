@@ -1,44 +1,101 @@
 /* 기초 설정 */
 *{ margin: 0px; padding: 0px;}
-html, body{height: 100%; width: 1600px; margin: 0 auto;}
+html, body{
+  height: 100%; width: 100%; margin: 0 auto;
+  background-color: #aaa;
+}
 div.main{height: 100vh;}
 
 /* 사이트 상단 */
 header{
   width: 100%;
   height: 10%;
-  background-color: orchid;
+  position: relative;
+  background-color: #044595;
+  overflow: hidden;
 }
+header img{
+  position: absolute;
+  width: 100px;
+  left: 30px;
+  top: 20px;
+}
+header h1{
+  position: absolute;
+  font-size: 70px;
+  left: 140px;
+  top: 20px;
+}
+header #login{
+  position: absolute;
+  font-size: 20px;
+  padding: 5px;
+  width: 100px;
+  border: 2px solid black;
+  background-color: aqua;
+  right: 150px;
+  bottom: 20px;
+}
+header #login:hover{
+  background-color: #ccc;
+  cursor: pointer;
+}
+
 
 /* 왼쪽 네비게이션 */
 nav{
   width: 10%;
   height: 85%;
-  background-color: lightblue;
-
+  background-color: #2F3033;
+  text-align: center;
   float: left;
+}
+#myPage{
+  margin: 40px 0px 40px 0px;
+  padding: 10px;
+  width: 80%;
+  font-size: large;
+  background-color: #555;
+  border: 2px solid #000;
+  font-weight: bold;
+  color: white;
+}
+#myPage:hover{
+  background-color: #777;
+  cursor: pointer;
 }
 
 /* 왼쪽 네비게이션 ul 메뉴 설정 */
+nav{
+  overflow: auto;
+}
+nav::-webkit-scrollbar{
+  display: none;
+}
+
 nav ul{
   list-style-type: none;
-  width: 100%;
+  margin: 0 auto;
+  width: 90%;
   height: 95%;
   overflow: auto;
+  
 }
 nav ul > li > button {
   width: 100%;
   height: 100px;
-  background-color: antiquewhite;
+  padding: 5px;
+  margin-bottom: 10px;
+  background-color: #555;
+  border: 2px solid #000;
+  color: white;
   text-align: center;
-  line-height: 100px;
-  font-size: auto;
+  font-size: larger;
   overflow: hidden;
-  margin: 3px 0 3px 0 ;
 }
 nav ul > li > button:hover {
   cursor: pointer;
-  background-color: #ccc;
+  background-color: #777;
 }
 
 /* 중앙 오른쪽 메인 강좌 설명창 */
@@ -47,7 +104,10 @@ section{
   height: 85%;
   overflow: auto;
   float: left;
-  background-color: lightgreen;
+}
+section > div{
+  overflow: hidden;
+  height: 100%;
 }
 section div#MainPage{
   width: 50%;
@@ -61,39 +121,67 @@ section div#MainPage{
 section div#MainPage::-webkit-scrollbar{
   display: none;
 }
-
-section div#MainPage2{
-  width: 50%;
-  height: 100%;
-  background-color: blueviolet;
-  float: left;
-  overflow: auto;
-}
-section > div{
-  overflow: hidden;
-  height: 100%;
-}
-
 /* 메인 클래스(A, B) 제목 */
 section h1.classTitle{
   padding: 20px;
+  font-size: x-large;
 }
-
 /* 각 반에 들어있는 강좌들 */
 section div#MainPage ul{
   list-style-type: none;
+  padding: 5px;
   width: 80%;
   margin: 0 auto;
 }
-section .classBox{
-  background-color: lightgray;
-  border: 3px solid black;
+section #MainPage li.classBox{
+  background-color: white;
+  border: 4px solid black;
   width: 100%;
   height: 100px;
+  font-size: large;
+  overflow: hidden;
   margin-bottom: 5px;
 }
-
-/* 반 정보창 테이블 */
+/* 각 강의 클릭 hover*/
+section #MainPage li.classBox:hover{
+  background-color: #999;
+  cursor: pointer;
+}
+section #MainPage div.classBox{
+  background-color: #ccc;
+  border: 4px solid #f00000;
+  width: 100%;
+  height: 100px;
+  font-size: large;
+  overflow: hidden;
+  margin-bottom: 5px;
+  color: black;
+  font-weight: bold;
+}
+section #MainPage div.classBox input{
+  width: 140px;
+  height: 35px;
+  background-color: skyblue;
+  border: 2px solid #000;
+  border-radius: 10px;
+  padding-left: 10px;
+}
+section #MainPage div.classBox input:hover{
+  background-color: lightblue;
+  border: 2px solid red;
+}
+section #MainPage button.addLecture{
+  padding: 10px;
+  width: 200px;
+  margin: 10px;
+  font-weight: bolder;
+  font-size: 20px;
+}
+section #MainPage button.addLecture:hover{
+  cursor: pointer;
+  background-color: #ccc;
+}
+/* 정보창 테이블 */
 table.tableBox{
   border-collapse: collapse;
   width: 100%;
@@ -111,11 +199,152 @@ table.tableBox td:nth-child(3){
 }
 
 
-/* 각 강의 클릭 hover test*/
-div.textBt:hover{
-  background-color: #999;
-  cursor: pointer;
+/* 마이페이지 */
+section div#MainPage .myPageClass{
+  height: 80px;
+  text-align: left;
+  margin-bottom: 15px;
+  border: 4px solid black;
+  background-color: white;
+  clear: both;
 }
+/* 마이페이지 클래스 제목 */
+section div#MainPage .myPageClass .mainTitle{
+  width: 70%;
+  line-height: 80px;
+  font-size: 20px;
+  float: left;
+}
+section div#MainPage .myPageClass .mainTitle span{
+  padding-left: 30px;
+}
+section div#MainPage .myPageClass .mainTitle input{
+  margin-left: 30px;
+  height: 40px;
+  font-size: 20px;
+  background-color: #ccc;
+}
+/* 마이페이지 버튼 수정/삭제 */
+section div#MainPage .myPageClass .maPageBt{
+  width: 30%;
+  line-height: 80px;
+  text-align: center;
+  float: right;
+}
+section div#MainPage .myPageClass .maPageBt button{
+  text-align: center;
+  font-size: 15px;
+  padding: 2px;
+  margin: 2px 2px;
+}
+
+
+
+
+/* 중앙 우측 정보창 */
+section div#SecondPage{
+  width: 50%;
+  height: 100%;
+  background-color: rgba(212, 195, 175, 0.308);
+  float: left;
+  overflow: auto;
+}
+section div#SecondPage > div{
+  width: 100%;
+  height: 100%;
+}
+/* 스크롤바는 삭제하고, 스크롤바 기능은 유지 */
+section div#SecondPage::-webkit-scrollbar{
+  display: none;
+}
+
+/* 강의를 선택 안한하면 나오는 글자 */
+section div#SecondPage div#noChoice{
+  text-align: center;
+  margin: 100px auto;
+  font-size: 50px;
+  font-weight: bolder;
+}
+
+/* 강의 정보창 전체 */
+section div#SecondPage div.viewContent{
+  width: 100%;
+  height: 100%;
+  margin: 0 auto;
+}
+
+/* 콘텐츠 부분 */
+section div#SecondPage div.content{
+  width: 90%;
+  height: 90%;
+  text-align: center;
+  margin: 15px auto;
+}
+section div#SecondPage div.content pre{
+  padding: 15px;
+  width: 600px;
+  height: 450px;
+  text-align: left;
+  font-size: 15px;
+  font-weight: 500;
+  overflow: auto;
+}
+section div#SecondPage div.content div input{
+  width: 50%;
+  height: 50px;
+  background-color: skyblue;
+  border: 2px solid #000;
+  text-align: center;
+  padding-left: 10px;
+  font-size: x-large;
+}
+section div#SecondPage div.content textarea{
+  width: 600px;
+  height: 450px;
+  background-color: white;
+  border: 2px solid #000;
+  text-align: left;
+  font-size: large;
+}
+section div#SecondPage div.classTitle{
+  font-size: 30px;
+  font-weight: bolder;
+  margin-bottom: 15px;
+}
+section div#SecondPage div.classImage{
+  margin: 20px;
+}
+section div#SecondPage div.className{
+  font-size: 25px;
+  font-weight: bolder;
+  margin: 15px;
+}
+section div#SecondPage div.classTime{
+  font-size: 20px;
+  font-weight: bolder;
+  margin: 15px;
+}
+section div#SecondPage div.classContent{
+  margin: 5px 0 25px 0;
+  text-align: center;
+  font-size: 20px;
+  font-weight: bolder;
+}
+/* 콘텐츠 수정/삭제 버튼 */
+section div#SecondPage div.UpdateDataBt{
+  width: 80%;
+  text-align: center;
+  margin: 0 auto;
+}
+section div#SecondPage div.UpdateDataBt button{
+  padding: 10px;
+  width: 200px;
+  margin: 10px;
+  font-weight: bolder;
+  font-size: 20px;
+}
+
+
 
 /* 하단 팀설명창 */
 footer{
