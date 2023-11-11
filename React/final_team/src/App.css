@@ -147,7 +147,7 @@ section #MainPage li.classBox:hover{
   background-color: #999;
   cursor: pointer;
 }
-section #MainPage div.classBox{
+section #MainPage div#classNumber div.classBox{
   background-color: #ccc;
   border: 4px solid #f00000;
   width: 100%;
@@ -236,6 +236,9 @@ section div#MainPage .myPageClass .maPageBt button{
   font-size: 15px;
   padding: 2px;
   margin: 2px 2px;
+}
+section div#MainPage div#MyPage div.classBox{
+  line-height: 100px;
 }
 
 

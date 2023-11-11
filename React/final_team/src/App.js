@@ -178,7 +178,7 @@ const ChangePage = ({curPage=0, cl, addClass, updateClass, removeClass, addClass
 // 해당 클래스에 강의를 띄움 
 const ClassNumber = ({id, title, classData, addClassData, setSecondPage}) => {
   return(
-    <div>
+    <div id='classNumber'>
       <h1 className='classTitle'>{title} 강의 목록</h1>
       <ul>
         {classData.map( (cd) => {
@@ -322,7 +322,7 @@ const DetailUpdatePage = ({curPage, secondPage, removeClassData, updateClassData
 // 마이페이지 ( 강좌 정보 추가, 수정, 삭제 등)
 const MyPage = ({cl, addClass, updateClass, removeClass}) => {
   return (
-    <div>
+    <div id='MyPage'>
        <h1 className='classTitle'>마이페이지</h1>
        <ul>
         {cl.map( (c) => {
@@ -373,5 +373,5 @@ const AddLecture = ({addClass}) => {
     }}>추가하기</button>
     <button onClick={()=>setIsAdd(false)}>취소하기</button>
   </div>
-  else return <button className='addLecture' onClick={()=>setIsAdd(!isAdd)}>강의 추가</button>
+  else return <button className='addLecture' onClick={()=>setIsAdd(!isAdd)}>클래스 개설</button>
 }
