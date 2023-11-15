@@ -98,6 +98,11 @@ nav ul > li > button:hover {
   background-color: #777;
 }
 
+
+div#login{
+  height: 85%;
+}
+
 /* 중앙 오른쪽 메인 강좌 설명창 */
 section{
   width: 90%;

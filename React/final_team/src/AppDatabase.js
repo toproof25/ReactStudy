@@ -1,6 +1,12 @@
-import React, {useState} from 'react';
+import {useState} from 'react';
 
 export default function AppDatabase(){
+
+  // 유저 정보
+  const [userData, setUserData] = useState([
+        {id: 'test', password: '1234', name: "홍길동", adress: '경기도 용인시 기흥구 강남로 40', phone: '010-1234-5678', email: 'test@gmail.com', gender: 'man',  year: 2000, month: 1, day: 1},
+        {id: 'qwer', password: 'qwer1234', name: "김철수", adress: '경기 용인시 기흥구 강남로 3', phone: '010-1122-3344', email: 'qwer@naver.com', gender: 'woman',  year: 1999, month: 5, day: 26}
+  ]);
 
   // 각 클래스와 강의 정보
   const [cl, setCl] = useState([ 
@@ -39,8 +45,17 @@ export default function AppDatabase(){
       }
   ]);
 
+  // 딜레이를 주기 위한 함수
+  /* 
+    딜레이를 주는 이유 :
+        실제 웹 사이트에서 로그인이나 장바구니에 물건을 추가하는 등 작업을 수행할 때 딜레이가 있음 
+        -> 그러한 작업 시 서버에 연결하고, DB에 데이터를 추가하거나 수정하는 등의 작업이 이루어지는 만큼의 딜레이가 존재
+        --> 해당 프로젝트에서는 실제 DB가 아닌 컴포넌트를 DB처럼 사용하기에 고의적으로 딜레이를 걸어서 실제 웹사이트에서 작업을 하는 것 같은 같은 효과를 줌.
+        ---> (팀플 -> 배운 걸 활용) 비동기 방식을 활용하기 위해 사용해봄
+  */
   const sleep = (time) => { return new Promise((resolve) => setTimeout(resolve, time * 1000)); }
 
+  
   // 클래스 추가, 수정, 삭제
   const addClass = async (title="제목") => {
     const mainTitle = title
@@ -55,12 +70,12 @@ export default function AppDatabase(){
     await sleep(0.2);
     setCl(cl.map( c => {
       if(c.id === id) return {...c, mainTitle};
-      return c;
+      return c; 
     } ) )
     return '클래스 이름이 수정되었습니다.';
   }
   const removeClass = async (id) => {
-    await sleep(1);
+    await sleep(0.5);
     const title = cl.filter( c => c.id === id)[0].mainTitle
     setCl( cl.filter( c => c.id !== id ) );
     return title + ' 클래스를 삭제하였습니다.'
@@ -71,7 +86,7 @@ export default function AppDatabase(){
 const addClassData = async (id, title, name, time) => {
         const image = './logo192.png';
 
-        await sleep(0.5);
+        await sleep(0.3);
         setCl(cl.map( c => {
                 if(c.id === id){
                         const id = c.classData.length===0 ? 1 : c.classData[c.classData.length-1].id + 1;
@@ -83,7 +98,7 @@ const addClassData = async (id, title, name, time) => {
 }
 const removeClassData = async (curPage, classId) => {
 
-        await sleep(1);
+        await sleep(0.5);
         setCl( cl.map( c => {
                 if(c.id === curPage) {
                 return {...c, classData: c.classData.filter( data => data.id !== classId ) }
@@ -93,7 +108,7 @@ const removeClassData = async (curPage, classId) => {
         return '강의를 삭제하였습니다.'
 }
 const updateClassData = async (curPage, classId, title, name, time, step) => {
-        await sleep(0.3);
+        await sleep(0.2);
         setCl( cl.map( c => {
                 if(c.id === curPage) {
                 return {...c, classData: c.classData.map( data => {
@@ -106,14 +121,19 @@ const updateClassData = async (curPage, classId, title, name, time, step) => {
         return '강의 내용을 수정하였습니다.'
 }
 
+// ------------------------------- ↓↓ 새로운 함수 추가 ↓↓ -------------------------------//
+
+
+
+
+
+
+
+// 변수, 함수를 리턴
   return {
-        cl,
-        addClass,
-        updateClass,
-        removeClass,
-        addClassData,
-        removeClassData,
-        updateClassData
+        cl, userData,
+        addClass, updateClass, removeClass,
+        addClassData, removeClassData, updateClassData
   }
 }
 
