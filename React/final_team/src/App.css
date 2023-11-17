@@ -47,7 +47,7 @@ header ul#header_nav{
   list-style:none;
   position: absolute;
   bottom: 15px;
-  right: 400px;
+  right: 600px;
 }
 header ul#header_nav li{
   color: white;
@@ -61,10 +61,17 @@ header ul#header_nav li{
 header ul#header_nav li:hover{
   cursor: pointer;
   background-color: #3467a5;
-
-
 }
 
+header span#userName{
+  position: absolute;
+  bottom: 10px;
+  right: 260px;
+  color: white;
+  text-align: center;
+  font-size: 30px;
+  padding: 10px 15px;
+}
 
 /* 왼쪽 네비게이션 */
 nav{

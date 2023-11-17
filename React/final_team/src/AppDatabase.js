@@ -117,6 +117,16 @@ export default function AppDatabase() {
   */
   const sleep = (time) => { return new Promise((resolve) => setTimeout(resolve, time * 1000)); }
 
+  // 유저 이름을 찾아고 반환
+  const findUserName = (userId) => {
+    if (userId === null) return ''
+    const ud = userData.filter( user => user.userID === userId)[0]
+    return ud.name + '님 반갑습니다'
+  }
+
+
+
+
 
   // 클래스 추가, 수정, 삭제
   const addClass = async (userId, title = "제목") => {
@@ -245,6 +255,7 @@ export default function AppDatabase() {
 
   return {
     classes, userData, notice,
+    findUserName,
     addClass, updateClass, removeClass,
     addClassData, removeClassData, updateClassData
   }
