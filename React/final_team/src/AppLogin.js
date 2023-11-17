@@ -1,10 +1,9 @@
-import React, {useState} from 'react';
-import DB from './AppDatabase.js';
+import React, { useState } from "react";
 
 /*
  로그인 페이지 구현 컴포넌트
 
- DB() -> './AppDatabase.js' 에서 유저 데이터 정보를 가져옵니다.
+ DB -> './AppDatabase.js' 에서 유저 데이터 정보를 가져옵니다.
  ex) {id: 'test', password: '1234', name: "홍길동", adress: '경기도 용인시 기흥구 강남로 40', 
       phone: '010-1234-5678', email: 'test@gmail.com', gender: 'man',  year: 2000, month: 1, day: 1}
 
@@ -22,8 +21,6 @@ import DB from './AppDatabase.js';
     입력한 password == DB password
  일치하는 데이터가 있으면 로그인 성공 / 없으면 로그인 실패
  함수 구현은 비동기 방식(11, 12주차 웹개발응용 수업 내용)에서 async, await방식을 사용해서 함수를 작성하면 됩니다.
- 
- 
  
  --회원가입--
  1. [아이디, 비밀번호, 이름, 주소, 폰번호, 이메일, 성별, 생년월일(년, 월, 일)]을 입력받습니다.
@@ -44,18 +41,36 @@ import DB from './AppDatabase.js';
  """제가 만든 코드에서 이해안가는 부분이 있다면 톡주시면 최대한 바로 답장해드리겠습니다"""
 */
 
-
-export default function AppLogin({setLogin}) {
-
-  const {userData} = DB();
-  console.log("유저 데이터 : ", userData)
+export default function AppLogin({ setLogin, DB, handleSetsetUserId }) {
+  const { userData } = DB;
+  
+  // handleSetsetUserId( UserID ) 이 함수에 로그인을 성공하는 사람의  userData.userID 값을 넣어주시면 됩니다.
 
   return (
-    <div id='login'>
-      <p> [div id='login']안에 로그인 페이지 제작</p>
-      <button 
-        style={{width: '150px', height: '50px'}}
-        onClick={()=>setLogin(true)}>----Login----</button>
+    <div id="login">
+      <h1 style={{fontSize: '50px'}}>[div id='login']안에 로그인 페이지 제작</h1>
+      {userData.map( user => <div key={user.userID}>
+            <div>id : {user.id}</div>
+            <div>pw : {user.password}</div>
+            <div>name : {user.name}</div>
+            <div>adress : {user.adress}</div>
+            <div>phone : {user.phone}</div>
+            <div>email : {user.email}</div>
+            <div>gender : {user.gender}</div>
+            <div>year : {user.year}</div>
+            <div>month : {user.month}</div>
+            <div>day : {user.day}</div>
+            <br />
+        </div> )}
+      <button
+        style={{ width: "150px", height: "50px" }}
+        onClick={() => {
+          setLogin(true);
+          handleSetsetUserId(1);
+        }}
+      >
+        ----Login----
+      </button>
     </div>
   );
 }
