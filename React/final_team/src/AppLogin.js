@@ -43,7 +43,7 @@ import React, { useState } from "react";
 
 export default function AppLogin({ setLogin, DB, handleSetsetUserId }) {
   const { userData } = DB;
-  
+
   // handleSetsetUserId( UserID ) 이 함수에 로그인을 성공하는 사람의  userData.userID 값을 넣어주시면 됩니다.
 
   return (

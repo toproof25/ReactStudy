@@ -3,6 +3,8 @@ import AppClassPage from "./AppClassPage.js";
 import AppLogin from "./AppLogin.js";
 import AppMainPage from "./AppMainPage.js";
 import AppNotice from "./AppNotice.js";
+import AppMyPage from "./AppMyPage.js";
+
 import DB from './AppDatabase.js';
 import "./App.css";
 
@@ -77,7 +79,7 @@ const Header = ({ login, setLogin, userId, findUserName, handleOnClickSetPage })
         // 로그인이 되어 있을 때만 로그아웃 버튼이 상단에 배치됨
         if (login)
           return (<span>
-            <span id="userName">{findUserName(userId)}</span>
+            <span id="HeaderUserName">{findUserName(userId)}</span>
             <input
               type="button"
               value={"로그아웃"}
@@ -93,7 +95,7 @@ const Header = ({ login, setLogin, userId, findUserName, handleOnClickSetPage })
           <li onClick={()=>handleOnClickSetPage("MainPage")}>메인 페이지</li>
           <li onClick={()=>handleOnClickSetPage("Notice")}>공지사항</li>
           <li onClick={()=>handleOnClickSetPage("Class")}>강의 목록</li>
-          <li onClick={()=>handleOnClickSetPage("Class")}>마이페이지 아직x</li>
+          <li onClick={()=>handleOnClickSetPage("MyPage")}>마이페이지</li>
         </ul>
       </div>
 
@@ -113,5 +115,8 @@ const Main = ({ login, userId, setLogin, page, DataBase, handleSetsetUserId }) =
   } 
   else if (page == "Class") { // 강의목록 페이지
     return <AppClassPage DB = {DataBase} userId={userId} />;
+  }
+  else if (page == "MyPage") { // 마이 페이지
+    return <AppMyPage DB = {DataBase} userId={userId} />;
   }
 };

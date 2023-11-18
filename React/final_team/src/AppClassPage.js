@@ -77,7 +77,7 @@ const NavBox = ({ cl, handleOnClickMyPage }) => {
   const [curNav, setCurNav] = useState(0);
   return <div>
     <button 
-      id='myPage' 
+      id='MyClassPageButton' 
       style={{
         backgroundColor: curNav===0 ? '#444' : '',
         border: curNav===0 ? '4px solid orange' : '',
@@ -86,7 +86,7 @@ const NavBox = ({ cl, handleOnClickMyPage }) => {
         () => {
           handleOnClickMyPage({ curPageData: "MyPage", secondPageData: "MyPage" });
           setCurNav(0);
-      }} >내 클래스 목록</button>
+      }} >내 클래스</button>
     <hr style={{margin: '0 auto 40px auto', marginBottom: '40px', width: "90%"}}/>
     <ul>
       {cl.map((c) => <NavList key={c.id} {...{ id: c.id, mainTitle: c.mainTitle, handleOnClickMyPage, curNav, setCurNav }} />)}
@@ -293,7 +293,7 @@ const DetailUpdatePage = ({ curPage, secondPage, classData, handleOnClickRemoveC
 // 마이페이지 ( 강좌 정보 추가, 수정, 삭제 등)
 const MyPage = ({ cl, handleOnClickAddClass, handleOnClickUpdateClass, handleOnClickRemoveClass }) => {
   return (
-    <div id='MyPage'>
+    <div id='MyClassPage'>
       <h1 className='classTitle'>내 클래스 목록</h1>
       <ul>
         {cl.map((c) => {
