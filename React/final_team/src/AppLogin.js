@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-
+import React, { useState, useEffect } from "react";
+import axios from 'axios';
 /*
  로그인 페이지 구현 컴포넌트
 
@@ -41,15 +41,34 @@ import React, { useState } from "react";
  """제가 만든 코드에서 이해안가는 부분이 있다면 톡주시면 최대한 바로 답장해드리겠습니다"""
 */
 
-export default function AppLogin({ setLogin, DB, handleSetsetUserId }) {
-  const { userData } = DB;
-
+export default function AppLogin({ setLogin, handleSetsetUserId }) {
   // handleSetsetUserId( UserID ) 이 함수에 로그인을 성공하는 사람의  userData.userID 값을 넣어주시면 됩니다.
+  const [users, setUsers] = useState([]);
+
+
+  useEffect(()=>{
+    axios.get("http://localhost:4000/users")
+    .then( r => setUsers(r.data) )
+    .catch(console.log)
+  }, [])
+
+
+
+
+  // const description = "dassdasadsdasdaads";
+  // const handleSubmit = async () => {
+  //   const { data } = await axios.post("http://localhost:4000/users", {
+  //     description,
+  //     isCompleted: false,
+  //   });
+  //   alert(data.description + "이 추가되었습니다.");
+  // };
+
 
   return (
-    <div id="login">
+    <div id="login" style={{height: '85%'}}>
       <h1 style={{fontSize: '50px'}}>[div id='login']안에 로그인 페이지 제작</h1>
-      {userData.map( user => <div key={user.userID}>
+      {users.map( user => <div key={user.userID}>
             <div>id : {user.id}</div>
             <div>pw : {user.password}</div>
             <div>name : {user.name}</div>

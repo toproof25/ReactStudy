@@ -1,0 +1,306 @@
+/*
+
+강의 목록 페이지
+
+*/
+
+
+/* 왼쪽 네비게이션 */
+
+/* 강의 목록 네비게이션 너비, 높이 조절 */
+/* nav, section에 float left로 가로로 배치 */
+nav{
+  width: 10%;
+  height: 85%;
+  background-color: #2F3033;
+  text-align: center;
+  float: left;
+  overflow: auto;
+}
+/* 네비게이션에 [내 클래스] 버튼  */
+nav #MyClassPageButton{
+  margin: 40px 0px 40px 0px;
+  padding: 10px;
+  width: 80%;
+  height: 60px;
+  font-size: large;
+  background-color: #555;
+  border: 2px solid #000;
+  font-weight: bold;
+  color: white;
+}
+/* [내 클래스] 버튼 hover시 배경 어둡게, 커서 포인터  */
+nav #MyClassPageButton:hover{
+  background-color: #777;
+  cursor: pointer;
+}
+/* 네비게이션 내부 ul 스타일 none, margin auto로 가운데 */
+nav ul{
+  list-style-type: none;
+  margin: 0 auto;
+  width: 90%;
+}
+/* 각 클래스 버튼들 설정 */
+nav ul > li > button {
+  width: 100%;
+  height: 100px;
+  padding: 5px;
+  margin-bottom: 10px;
+  background-color: #555;
+  border: 2px solid #000;
+  color: white;
+  text-align: center;
+  font-size: larger;
+}
+/* 버튼에 손 올리면 포인터, 배경 어둡게*/
+nav ul > li > button:hover {
+  cursor: pointer;
+  background-color: #777;
+}
+
+
+/* 중앙 오른쪽 메인 각 강의, 강의 내용들 나오는 화면 */
+section{
+  width: 90%;
+  height: 85%;
+  overflow: auto;
+  float: left;
+}
+/* section내부 전체를 div로 감쌈, overflow로 float를 초기화 */
+section > div{
+  overflow: hidden;
+  height: 100%;
+}
+/* 왼쪽 화면, float left로 화면을 2개로 나눔 */
+section div#MainPage{
+  width: 50%;
+  height: 100%;
+  background-color: beige;
+  float: left;
+  overflow: auto;
+  text-align: center;
+}
+/* 해당 강의 제목 */
+section h1.classTitle{
+  padding: 20px;
+  font-size: x-large;
+}
+/* 각 클래스에 들어있는 수업 목록들 ul 리스트 */
+section div#MainPage ul{
+  list-style-type: none;
+  padding: 5px;
+  width: 80%;
+  margin: 0 auto;
+}
+/* 수업 목록 li */
+section #MainPage li.classBox{
+  background-color: white;
+  border: 4px solid black;
+  width: 100%;
+  height: 100px;
+  font-size: large;
+  overflow: hidden;
+  margin-bottom: 5px;
+}
+/* 각 수업 목록 hover*/
+section #MainPage li.classBox:hover{
+  background-color: #999;
+  cursor: pointer;
+}
+/* 각 수업 목록 박스 table태그로 이루어짐 */
+table.tableBox{
+  border-collapse: collapse;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+}
+/* 1번째 열 너비 20% */
+table.tableBox td:nth-child(1){ /* 이미지 */
+  width: 20%;
+}
+/* 2번째 열 너비 50% */
+table.tableBox td:nth-child(2){ /* 제목, 이름 */
+  width: 50%;
+}
+/* 3번째 열 너비 30% */
+table.tableBox td:nth-child(3){ /* 시간 */
+  width: 30%;
+}
+
+/* (강의 추가) 버튼 누르면 나오는 태그들   */
+section #MainPage div#classNumber div.classBox{
+  background-color: #ccc;
+  border: 4px solid #f00000;
+  width: 100%;
+  height: 100px;
+  font-size: large;
+  overflow: hidden;
+  margin-bottom: 5px;
+  color: black;
+  font-weight: bold;
+}
+/* (강의 추가) 버튼 누르면 나오는 input 입력 창    */
+section #MainPage div.classBox input{
+  width: 140px;
+  height: 35px;
+  background-color: skyblue;
+  border: 2px solid #000;
+  border-radius: 10px;
+  padding-left: 10px;
+}
+/* (강의 추가) 버튼 누르면 나오는 input 입력 창 hover시 배경 연하게, 태두리 red    */
+section #MainPage div.classBox input:hover{
+  background-color: lightblue;
+  border: 2px solid red;
+}
+/* (강의 추가) 버튼 누르면 나오는 [추가하기] [삭제하기] 버튼   */
+section #MainPage button.addLecture{
+  padding: 10px;
+  width: 200px;
+  margin: 10px;
+  font-weight: bolder;
+  font-size: 20px;
+}
+/* (강의 추가) 버튼 누르면 나오는 [추가하기] [삭제하기] 버튼 hover할 때   */
+section #MainPage button.addLecture:hover{
+  cursor: pointer;
+  background-color: #ccc;
+}
+
+
+/* 내 클레스 */
+
+/* 내 클래스에 각 클래스 목록들 li태그 */
+section div#MainPage li.myPageClass{
+  height: 80px;
+  text-align: center;
+  margin-bottom: 15px;
+  border: 4px solid black;
+  background-color: white;
+  clear: both;
+}
+/* 내 클래스 목록에 각 클래스 제목 설정*/
+section div#MainPage li.myPageClass span.mainTitle{
+  line-height: 80px;
+  text-align: center;
+  font-size: 20px;
+  display: inline-block;
+  width: 300px;
+}
+/* 내 클래스 목록에 각 클래스 수정 할 때 input 텍스트 창 */
+section div#MainPage li.myPageClass span.mainTitle input{
+  margin-left: 30px;
+  margin-top: 15px;
+  height: 40px;
+  font-size: 20px;
+  background-color: #ccc;
+}
+/* 내 클래스 버튼 [수정] [삭제] [저장] */
+section div#MainPage li.myPageClass span.maPageBt button{
+  text-align: center;
+  font-size: 15px;
+  padding: 5px;
+  margin: 2px 2px;
+}
+/* 내 클래스 버튼 [수정] [삭제] [저장]  hover 상태 */
+section div#MainPage li.myPageClass span.maPageBt button:hover{
+  cursor: pointer;
+}
+
+
+/* 강의 목록 중앙 우측 정보창 */
+
+/* 수업 선택 시 우측에 나오는 화면 */
+section div#SecondPage{
+  width: 50%;
+  height: 100%;
+  background-color: rgba(212, 195, 175, 0.308);
+  float: left;
+  overflow: auto;
+}
+/* 강의를 선택 안한하면 나오는 글자  "강의를 선택하세요" */
+section div#SecondPage div#noChoice{
+  text-align: center;
+  margin: 100px auto;
+  font-size: 50px;
+  font-weight: bolder;
+}
+/* 수업 목록 내용 콘텐츠 부분 */
+section div#SecondPage div.content{
+  width: 95%;
+  height: 100%;
+  text-align: center;
+  margin: 15px auto;
+}
+/* 수업 목록 내용 콘텐츠 - 강의 내용 부분 */
+section div#SecondPage div.content pre{
+  padding: 15px;
+  width: 600px;
+  height: 650px;
+  text-align: left;
+  font-size: 15px;
+  overflow: auto;
+}
+/* 수업 목록 내용 콘텐츠 [수정하기] 버튼 누를 시 input태그 */
+section div#SecondPage div.content div input{
+  width: 50%;
+  height: 50px;
+  background-color: skyblue;
+  border: 2px solid #000;
+  text-align: center;
+  padding-left: 10px;
+  font-size: x-large;
+}
+/* 수업 목록 내용 콘텐츠 [수정하기] 버튼 누를 시 textarea태그 */
+section div#SecondPage div.content textarea{
+  width: 600px;
+  height: 450px;
+  padding: 10px;
+  background-color: white;
+  border: 2px solid #000;
+  text-align: left;
+  font-size: large;
+}
+/* 수업 목록 내용 콘텐츠 - 제목 부분 */
+section div#SecondPage div.classTitle{
+  font-size: 30px;
+  font-weight: bolder;
+  margin-bottom: 15px;
+}
+/* 수업 목록 내용 콘텐츠 - 이미지 부분 */
+section div#SecondPage div.classImage{
+  margin: 20px;
+}
+/* 수업 목록 내용 콘텐츠 - 강사 이름 부분 */
+section div#SecondPage div.className{
+  font-size: 25px;
+  font-weight: bolder;
+  margin: 15px;
+}
+/* 수업 목록 내용 콘텐츠 - 날짜/시간 */
+section div#SecondPage div.classTime{
+  font-size: 20px;
+  font-weight: bolder;
+  margin: 15px;
+}
+/* 수업 목록 내용 콘텐츠 - "강의 내용" 글씨 부분 */
+section div#SecondPage div.classContent{
+  margin: 20px 0;
+  font-size: 20px;
+  font-weight: bolder;
+}
+/* 수업 목록 내용 [수정하기] [삭제하기]를 감싸는 div태그 */
+section div#SecondPage div.UpdateDataBt{
+  text-align: center;
+}
+/* 수업 목록 내용 [수정하기] [삭제하기] 버튼 */
+section div#SecondPage div.UpdateDataBt button{
+  padding: 10px;
+  width: 200px;
+  margin: 10px;
+  font-weight: bolder;
+  font-size: 20px;
+}
+section div#SecondPage div.UpdateDataBt button:hover{
+  cursor: pointer;
+}

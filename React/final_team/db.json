@@ -1,0 +1,241 @@
+{
+  "users": [
+    {
+      "userID": 1,
+      "id": "test",
+      "password": "1234",
+      "name": "홍길동",
+      "adress": "경기도 용인시 기흥구 강남로 40",
+      "phone": "010-1234-5678",
+      "email": "test@gmail.com",
+      "gender": "man",
+      "year": 2000,
+      "month": 1,
+      "day": 1
+    },
+    {
+      "userID": 2,
+      "id": "qwer",
+      "password": "qwer1234",
+      "name": "김철수",
+      "adress": "경기 용인시 기흥구 강남로 3",
+      "phone": "010-1122-3344",
+      "email": "qwer@naver.com",
+      "gender": "woman",
+      "year": 1999,
+      "month": 10,
+      "day": 5
+    }
+  ],
+
+  "notice": [
+    {
+      "id": 1,
+      "title": "공지사항 테스트 useState입니다.",
+      "name": "작성자",
+      "date": "2023-11-16",
+      "content": "공지사항 내용"
+    },
+    {
+      "id": 2,
+      "title": "공지사항22 테스트22 useState입니다.22",
+      "name": "작성자22",
+      "date": "2023-11-18",
+      "content": "공지사항 내용2222"
+    }
+  ],
+
+  "classes": [
+    {
+      "userID": 1,
+      "data": [
+        {
+          "id": 1,
+          "mainTitle": "웹개발응용",
+          "classData": [
+            {
+              "id": 1,
+              "image": "./logo192.png",
+              "title": "HTML / CSS / JavaScript",
+              "name": "최권택",
+              "time": "화요일(11:50 ~ 14:20)",
+              "step": "HTML, CSS, JS의 기초를 다룹니다."
+            },
+            {
+              "id": 2,
+              "image": "./logo192.png",
+              "title": "React 설치",
+              "name": "최권택",
+              "time": "화요일(11:50 ~ 14:20)",
+              "step": "React를 설치해봅니다"
+            },
+            {
+              "id": 3,
+              "image": "./logo192.png",
+              "title": "React 기본 문법",
+              "name": "최권택",
+              "time": "화요일(11:50 ~ 14:20)",
+              "step": "React 기본 문법을 배우고 기초적인 웹을 만들어 봅니다"
+            }
+          ]
+        },
+        {
+          "id": 2,
+          "mainTitle": "모바일 프로그래밍",
+          "classData": [
+            {
+              "id": 1,
+              "image": "./logo192.png",
+              "title": "안드로이드 스튜디오 설치",
+              "name": "양재형",
+              "time": "화요일(14:30 ~ 17:20)",
+              "step": "안드로이드 스튜디오와 자바를 설치합니다"
+            },
+            {
+              "id": 2,
+              "image": "./logo192.png",
+              "title": "자바 문법",
+              "name": "양재형",
+              "time": "화요일(14:30 ~ 17:20)",
+              "step": "자바의 기본적인 문법과 이론을 공부합니다"
+            },
+            {
+              "id": 3,
+              "image": "./logo192.png",
+              "title": "버튼 구현",
+              "name": "양재형",
+              "time": "화요일(14:30 ~ 17:20)",
+              "step": "실제 앱을 제작하기 위한 기본적은 버튼을 구현해봅니다"
+            }
+          ]
+        },
+        {
+          "id": 3,
+          "mainTitle": "객체지향 프로그래밍",
+          "classData": [
+            {
+              "id": 1,
+              "image": "./logo192.png",
+              "title": "C++ 기초 문법",
+              "name": "최병하",
+              "time": "목요일(9:00 ~ 14:30)",
+              "step": "C++에서 사용하는 기본 문법을 다룹니다"
+            },
+            {
+              "id": 2,
+              "image": "./logo192.png",
+              "title": "C++ 제어문",
+              "name": "최병하",
+              "time": "목요일(9:00 ~ 14:30)",
+              "step": "C++에서 사용하는 if, switch, for, while, do-while을 배우고 응용합니다"
+            },
+            {
+              "id": 3,
+              "image": "./logo192.png",
+              "title": "C++ 클래스와 함수",
+              "name": "최병하",
+              "time": "목요일(9:00 ~ 14:30)",
+              "step": "C++ 클래스와 함수를 이용하여 객체지향을 배워봅니다"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "userID": 2,
+      "data": [
+        {
+          "id": 1,
+          "mainTitle": "웹개발응용",
+          "classData": [
+            {
+              "id": 1,
+              "image": "./logo192.png",
+              "title": "HTML / CSS / JavaScript",
+              "name": "최권택",
+              "time": "화요일(11:50 ~ 14:20)",
+              "step": "HTML, CSS, JS의 기초를 다룹니다."
+            },
+            {
+              "id": 2,
+              "image": "./logo192.png",
+              "title": "React 설치",
+              "name": "최권택",
+              "time": "화요일(11:50 ~ 14:20)",
+              "step": "React를 설치해봅니다"
+            },
+            {
+              "id": 3,
+              "image": "./logo192.png",
+              "title": "React 기본 문법",
+              "name": "최권택",
+              "time": "화요일(11:50 ~ 14:20)",
+              "step": "React 기본 문법을 배우고 기초적인 웹을 만들어 봅니다"
+            }
+          ]
+        },
+        {
+          "id": 2,
+          "mainTitle": "모바일 프로그래밍",
+          "classData": [
+            {
+              "id": 1,
+              "image": "./logo192.png",
+              "title": "안드로이드 스튜디오 설치",
+              "name": "양재형",
+              "time": "화요일(14:30 ~ 17:20)",
+              "step": "안드로이드 스튜디오와 자바를 설치합니다"
+            },
+            {
+              "id": 2,
+              "image": "./logo192.png",
+              "title": "자바 문법",
+              "name": "양재형",
+              "time": "화요일(14:30 ~ 17:20)",
+              "step": "자바의 기본적인 문법과 이론을 공부합니다"
+            },
+            {
+              "id": 3,
+              "image": "./logo192.png",
+              "title": "버튼 구현",
+              "name": "양재형",
+              "time": "화요일(14:30 ~ 17:20)",
+              "step": "실제 앱을 제작하기 위한 기본적은 버튼을 구현해봅니다"
+            }
+          ]
+        },
+        {
+          "id": 3,
+          "mainTitle": "객체지향 프로그래밍",
+          "classData": [
+            {
+              "id": 1,
+              "image": "./logo192.png",
+              "title": "C++ 기초 문법",
+              "name": "최병하",
+              "time": "목요일(9:00 ~ 14:30)",
+              "step": "C++에서 사용하는 기본 문법을 다룹니다"
+            },
+            {
+              "id": 2,
+              "image": "./logo192.png",
+              "title": "C++ 제어문",
+              "name": "최병하",
+              "time": "목요일(9:00 ~ 14:30)",
+              "step": "C++에서 사용하는 if, switch, for, while, do-while을 배우고 응용합니다"
+            },
+            {
+              "id": 3,
+              "image": "./logo192.png",
+              "title": "C++ 클래스와 함수",
+              "name": "최병하",
+              "time": "목요일(9:00 ~ 14:30)",
+              "step": "C++ 클래스와 함수를 이용하여 객체지향을 배워봅니다"
+            }
+          ]
+        }
+      ]
+    }
+
+  ]
+  }

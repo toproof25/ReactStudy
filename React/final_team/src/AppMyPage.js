@@ -1,20 +1,30 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import "./AppMyPage.css";
+import axios from 'axios';
 
-export default function AppMainPage({DB, userId}) {
-  const { classes, userData } = DB; // 내 수업 목록, 유저정보(이름)
+export default function AppMainPage({userId}) {
 
-  const myData = userData.filter( user => user.userID === userId )[0]
-  const myClass = classes.filter( cl => cl.userID === userId )[0].data
+  const [users, setUsers] = useState({});
+  const [classes, setClasses] = useState([]);
 
-  console.log(myData, 'dada')
-  console.log(myClass, 'dada')
+  useEffect(()=>{
+    axios.get("http://localhost:4000/users", {params: {userID: userId}})
+    .then( response => setUsers(response.data[0]) )
+    .catch(console.log)
+  
+    axios.get("http://localhost:4000/classes", {params: {userID: userId}})
+    .then( response => setClasses(response.data[0].data))
+    .catch(console.log)
+
+  }, [])
+
 
   return (
     <div id="MyPage">
       <div id="MyPageTitle">마이 페이지</div>
      
-      <ViewUserData {...myData} />
-      <ViewMyClass myClass={myClass} />
+      <ViewUserData {...users} />
+      <ViewMyClass classes={classes} />
 
     </div>
   );
@@ -37,8 +47,10 @@ const ViewUserData = ({id, password, name, adress, phone, email, gender, year, m
   </div>
 }
 
-const ViewMyClass = ({myClass}) => {return <div id="MyClassInfo"> 
+const ViewMyClass = ({classes}) => {
+  return <div id="MyClassInfo"> 
   <div>내 수업 목록</div>
-  {myClass.map( (cl, index) => <ClassView key={cl.id} title={cl.mainTitle} index={index+1}/>)} 
-</div>}
+  {classes && classes.map( (cl, index) => <ClassView key={cl.id} title={cl.mainTitle} index={index+1}/>)} 
+  </div>
+}
 const ClassView = ({title='', index=1}) => <div style={{textAlign: 'left'}}>{index}. {title}</div>

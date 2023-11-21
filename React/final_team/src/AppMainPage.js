@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 /*
  메인 페이지 컴포넌트
 
@@ -18,8 +18,26 @@ import React, { useState } from "react";
  """제가 만든 코드에서 이해안가는 부분이 있다면 톡주시면 최대한 바로 답장해드리겠습니다"""
 */
 
-export default function AppMainPage({DB, userId}) {
-  const { notice, userData } = DB; // 공지사항, 유저정보(이름)
+export default function AppMainPage({userId}) {
+  const [users, setUsers] = useState([]);
+  const [notice, setNotice] = useState([]);
+
+  useEffect(()=>{
+
+    axios.get("http://localhost:4000/users", {params: {userID: userId}})
+    .then( response => setUsers(response.data) )
+    .catch(console.log)
+
+    axios.get("http://localhost:4000/notice")
+    .then( response => setNotice(response.data) )
+    .catch(console.log)
+  }, [])
+
+  useEffect(()=>{
+    console.log(notice)
+  }, [notice])
+
+
 
   // div에 height: '85%'만 놔두고 나머지는 삭제해도 상관없습니다.
   return (
@@ -36,7 +54,7 @@ export default function AppMainPage({DB, userId}) {
 
         <br /><br />
 
-        {userData.map( user => <div key={user.userID}>
+        {users.map( user => <div key={user.userID}>
             <div>id : {user.id}</div>
             <div>pw : {user.password}</div>
             <div>name : {user.name}</div>

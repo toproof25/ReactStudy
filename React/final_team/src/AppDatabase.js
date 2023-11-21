@@ -2,17 +2,6 @@ import { useState } from 'react';
 
 export default function AppDatabase() {
 
-  // 유저 정보
-  const [userData, setUserData] = useState([
-    { userID: 1, id: 'test', password: '1234', name: "홍길동", adress: '경기도 용인시 기흥구 강남로 40', phone: '010-1234-5678', email: 'test@gmail.com', gender: 'man', year: 2000, month: 1, day: 1 },
-    { userID: 2, id: 'qwer', password: 'qwer1234', name: "김철수", adress: '경기 용인시 기흥구 강남로 3', phone: '010-1122-3344', email: 'qwer@naver.com', gender: 'woman', year: 1999, month: 5, day: 26 }
-  ]);
-
-  // 공지사항 정보
-  const [notice, setNotice] = useState([
-    {id: 1, title: "공지사항 테스트 useState입니다.", name: "작성자", date: "2023-11-16", content: "공지사항 내용"},
-    {id: 2, title: "공지사항22 테스트22 useState입니다.22", name: "작성자22", date: "2023-11-18", content: "공지사항 내용2222"}
-  ])
 
   // 각 클래스와 강의 정보
   const [classes, setClasses] = useState([
@@ -119,9 +108,7 @@ export default function AppDatabase() {
 
   // 유저 이름을 찾아고 반환
   const findUserName = (userId) => {
-    if (userId === null) return ''
-    const ud = userData.filter( user => user.userID === userId)[0]
-    return ud.name + '님 반갑습니다'
+    return userId + '님 반갑습니다'
   }
 
 
@@ -254,7 +241,6 @@ export default function AppDatabase() {
 
 
   return {
-    classes, userData, notice,
     findUserName,
     addClass, updateClass, removeClass,
     addClassData, removeClassData, updateClassData

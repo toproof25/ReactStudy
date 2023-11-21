@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import "./AppClassPage.css";
+import axios from 'axios';
 
 export default function AppClassPage({DB, userId}) {
   /*
@@ -10,8 +12,15 @@ export default function AppClassPage({DB, userId}) {
 
   const [curPage, setCurPage] = useState("MyPage") // 현재 선택한 화면
   const [secondPage, setSecondPage] = useState(0) // 선택한 강의
-  const { classes, addClass, updateClass, removeClass, addClassData, removeClassData, updateClassData } = DB; // 수업 정보와 함수들 (컴퍼넌트를 DB처럼 활용)
-  const cl = classes.filter( c => c.userID === userId )[0].data // 로그인 중인 사람의 수업 목록
+  const { addClass, updateClass, removeClass, addClassData, removeClassData, updateClassData } = DB; // 수업 정보와 함수들 (컴퍼넌트를 DB처럼 활용)
+  const [cl, setCl] = useState([])
+
+  useEffect(()=>{  
+    axios.get("http://localhost:4000/classes", {params: {userID: userId}})
+    .then( response => setCl(response.data[0].data))
+    .catch(console.log)
+  }, [])
+
 
   // setCurPage, setSecondPage를 하나의 핸들함수로 수정
   const handleOnClickMyPage = ({ curPageData = curPage, secondPageData = secondPage }) => {
@@ -314,16 +323,16 @@ const UpdateLecture = ({ cData, handleOnClickUpdateClass, handleOnClickRemoveCla
   const [mainTitle, setMainTitle] = useState(cData.mainTitle)
 
   if (isUpdate) return <li className='myPageClass'>
-    <div className='mainTitle'><input type='text' value={mainTitle} onChange={(e) => setMainTitle(e.target.value)} /></div>
-    <div className='maPageBt'><button onClick={() => { handleOnClickUpdateClass(cData.id, mainTitle); setIsUpdate(false) }}>저장</button></div>
+    <span className='mainTitle'><input type='text' value={mainTitle} onChange={(e) => setMainTitle(e.target.value)} /></span>
+    <span className='maPageBt'><button onClick={() => { handleOnClickUpdateClass(cData.id, mainTitle); setIsUpdate(false) }}>저장</button></span>
   </li>
   else return <li className='myPageClass'>
     <div>
-      <div className='mainTitle'><span>{mainTitle}</span></div>
-      <div className='maPageBt'>
+      <span className='mainTitle'>{mainTitle}</span>
+      <span className='maPageBt'>
         <button id="updateBt" onClick={() => setIsUpdate(true)}>수정</button>
         <button id="removeBt" onClick={() => handleOnClickRemoveClass(cData.id)}>삭제</button>
-      </div>
+      </span>
     </div>
   </li>
 }

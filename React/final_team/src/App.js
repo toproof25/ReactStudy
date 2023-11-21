@@ -4,6 +4,7 @@ import AppLogin from "./AppLogin.js";
 import AppMainPage from "./AppMainPage.js";
 import AppNotice from "./AppNotice.js";
 import AppMyPage from "./AppMyPage.js";
+import axios from "axios";
 
 import DB from './AppDatabase.js';
 import "./App.css";
@@ -44,12 +45,15 @@ export default function App() {
     즉 벗어나지 않고계속 화면상에 존재하는 컴포넌트는 App컴포넌트
     App 최상위 컴포넌트 에서 AppDatabase를 불러오고, 받아온 정보를 하위 컴포넌트에 props로 넘겨준다면 AppDatabase에 있는 값들은 유지됨
   */
-  const { classes, userData, notice, findUserName, addClass, updateClass, removeClass, addClassData, removeClassData, updateClassData } = DB();
-  const DataBase = { classes, userData, notice, findUserName, addClass, updateClass, removeClass, addClassData, removeClassData, updateClassData };
+
+
+  const { addClass, updateClass, removeClass, addClassData, removeClassData, updateClassData } = DB();
+  const DataBase = { addClass, updateClass, removeClass, addClassData, removeClassData, updateClassData };
   
   const [login, setLogin] = useState(false); // 로그인 여부를 확인
   const [userId, setUserId] = useState(null) // 현재 로그인한 사람의 정보
   const [page, setPage] = useState("Login"); // 현재 페이지 (메인, 공지사항, 강의목록)
+  const [name, setName] = useState('')
 
   const handleOnClickSetPage = (pageText) => { // page변수를 관리하는 핸들러
     if (login) setPage(pageText);
@@ -61,13 +65,21 @@ export default function App() {
   }
 
   useEffect(()=>{ // 로그인을 하면 메인페이지로 넘어가게끔
-    if(login) setPage("MainPage");
+    if(login) {
+      setPage("MainPage")
+      axios.get("http://localhost:4000/users", {params: {userID: userId}})
+      .then( response => setName(response.data[0].name) )
+      .catch(console.log)
+    }
+    else{
+      setName('');
+    }
   }, [login])
 
   return (
     <div className="main">
       <header>
-        <Header {...{login, setLogin, userId, findUserName, handleOnClickSetPage}} />
+        <Header {...{login, setLogin, name, handleOnClickSetPage}} />
 
         <button onClick={()=>setUserId(1)}>유저 1</button>
         <button onClick={()=>setUserId(2)}>유저 2</button>
@@ -85,7 +97,7 @@ export default function App() {
 
 /* ---------------------- 상단 ---------------------- */
 // 상단 (사이트 제목, 로그인, 로그아웃 등)
-const Header = ({ login, setLogin, userId, findUserName, handleOnClickSetPage }) => {
+const Header = ({ login, setLogin, name, handleOnClickSetPage }) => {
   return (
     <div>
       <img src="./logo512.png" alt="사이트 사진" />
@@ -94,7 +106,7 @@ const Header = ({ login, setLogin, userId, findUserName, handleOnClickSetPage })
         // 로그인이 되어 있을 때만 로그아웃 버튼이 상단에 배치됨
         if (login)
           return (<span>
-            <span id="HeaderUserName">{findUserName(userId)}</span>
+            <span id="HeaderUserName">{name}님 반갑습니다</span>
             <input
               type="button"
               value={"로그아웃"}
@@ -120,18 +132,18 @@ const Header = ({ login, setLogin, userId, findUserName, handleOnClickSetPage })
 
 const Main = ({ login, userId, setLogin, page, DataBase, handleSetsetUserId }) => {
   if (!login || page=="Login") { // 로그인 페이지
-    return <AppLogin setLogin={setLogin} DB = {DataBase} handleSetsetUserId={handleSetsetUserId} />;
+    return <AppLogin setLogin={setLogin} handleSetsetUserId={handleSetsetUserId} />;
   }
   else if (page == "MainPage") { // 메인 페이지
-    return <AppMainPage DB={DataBase} userId={userId} />
+    return <AppMainPage userId={userId} />
   }
   else if (page == "Notice") { // 공지사항 페이지
-    return <AppNotice DB={DataBase} userId={userId} />
+    return <AppNotice userId={userId} />
   } 
   else if (page == "Class") { // 강의목록 페이지
     return <AppClassPage DB = {DataBase} userId={userId} />;
   }
   else if (page == "MyPage") { // 마이 페이지
-    return <AppMyPage DB = {DataBase} userId={userId} />;
+    return <AppMyPage userId={userId} />;
   }
 };

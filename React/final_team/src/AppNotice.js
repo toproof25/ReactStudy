@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import axios from 'axios';
 
 /*
  공지사항 페이지 컴포넌트
@@ -20,8 +21,17 @@ import React, { useState } from "react";
  """제가 만든 코드에서 이해안가는 부분이 있다면 톡주시면 최대한 바로 답장해드리겠습니다"""
 */
 
-export default function AppNotice({DB, userId}) {
-  const { notice, userData } = DB;
+export default function AppNotice({userId}) {
+  const [notice, setNotice] = useState([]);
+  useEffect(()=>{
+    axios.get("http://localhost:4000/notice")
+    .then( response => setNotice(response.data) )
+    .catch(console.log)
+  }, [])
+
+  useEffect(()=>{
+    console.log(notice)
+  }, [notice])
 
   // userData.userID 와 userId 값이 같은 사람의 이름을 작성자로 넣으면 됩니다. (로그인한 사람의 이름)
 
