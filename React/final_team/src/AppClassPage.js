@@ -30,8 +30,39 @@ export default function AppClassPage({DB, userId}) {
 
   // 클래스 개설
   const handleOnClickAddClass = async (title) => {
-    const message = await addClass(userId, title);
-    alert(message)
+
+    const mainTitle = title
+    const id = cl.length === 0 ? 1 : cl[cl.length - 1].id + 1;
+    
+    const clId = 1
+    const clImage = "./logo192.png"
+    const clTitle = "강의 제목"
+    const clName = "이름"
+    const clTime = "날짜/시간"
+    const clStep = "강의 내용"
+
+    const data = { 
+      id: id, 
+      mainTitle: mainTitle, 
+      classData: [
+        { 
+          id: clId, 
+          image: clImage, 
+          title: clTitle, 
+          name: clName, 
+          time: clTime, 
+          step: clStep 
+        }
+      ] 
+    }
+
+    axios.post("http://localhost:4000/classes/userID="+userId, data)
+    .then( response => alert(JSON.stringify(response.data)))
+    .catch( error => console.log(error, 'error'))
+
+
+    // const message = await addClass(userId, title);
+    // alert(message)
   }
   // 클래스 수정
   const handleOnClickUpdateClass = async (id, mainTitle) => {
