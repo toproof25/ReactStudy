@@ -3,10 +3,10 @@
 
 /* 너비 1600px 높이 1500px로 지정, margin auto로 가운데 정렬 , 배경색 화이트*/
 html, body{
-  height: 1500px; width: 1600px; margin: 0 auto;
+  height: 1600px; width: 1600px; margin: 0 auto;
   background-color: #fff; }
-/* 전체를 감싸는 div도 높이 1500px */
-div.main{height: 1500px;}
+/* 전체를 감싸는 div도 높이 1600px */
+div.main{height: 1600px;}
 
 /* 사이트 상단 */
 
@@ -23,16 +23,16 @@ header img{
   position: absolute;
   width: 100px;
   left: 30px;
-  top: 20px;
+  top: 30px;
 }
 /* 상단 제목 위치 조절 */
 header h1{
   position: absolute;
   font-size: 70px;
   left: 200px;
-  top: 20px;
+  top: 30px;
 }
-/* 상단 로그인 버는 위치, 모양, 크기 조절 */
+/* 상단 로그인 버튼 위치, 모양, 크기 조절 */
 header #login{
   position: absolute;
   font-size: 20px;
@@ -40,8 +40,8 @@ header #login{
   width: 100px;
   border: 2px solid black;
   background-color: aqua;
-  right: 150px;
-  bottom: 20px;
+  right: 280px;
+  top: 32px;
 }
 /* 로그인 버튼에 hover상태 시 배경 어둡게, 커서 포인터 */
 header #login:hover{
@@ -57,7 +57,7 @@ header ul#header_nav{
   position: absolute;
   overflow: hidden;
   bottom: 15px;
-  right: 600px;
+  right: 200px;
 }
 /* 상단 네비게이션 li들을 가로로 나열 / 부모 ul overflow hidden으로 float 초기화  */
 header ul#header_nav li{
@@ -77,8 +77,8 @@ header ul#header_nav li:hover{
 /* 상단 "000님 반갑습니다" 위치, 크기 조절 */
 header span#HeaderUserName{
   position: absolute;
-  bottom: 10px;
-  right: 260px;
+  top: 20px;
+  right: 400px;
   color: white;
   text-align: center;
   font-size: 30px;

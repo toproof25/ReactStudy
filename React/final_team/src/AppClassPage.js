@@ -2,25 +2,21 @@ import React, { useState, useEffect } from 'react';
 import "./AppClassPage.css";
 import axios from 'axios';
 
-export default function AppClassPage({DB, userId}) {
-  /*
-    웹개발응용, 모바이프로그래밍 등
-    각 네이게이션이나 강의를 클릭할 때
-    cl의 정보를 모두 주는게 아니라
-    클릭 시 해당 정보만 가져와서 페이지데 띄운다.
-  */
-
+export default function AppClassPage({userId}) {
+  
   const [curPage, setCurPage] = useState("MyPage") // 현재 선택한 화면
   const [secondPage, setSecondPage] = useState(0) // 선택한 강의
-  const { addClass, updateClass, removeClass, addClassData, removeClassData, updateClassData } = DB; // 수업 정보와 함수들 (컴퍼넌트를 DB처럼 활용)
   const [cl, setCl] = useState([])
 
   useEffect(()=>{  
+    getClaases()
+  }, [])
+
+  const getClaases = () => {
     axios.get("http://localhost:4000/classes", {params: {userID: userId}})
     .then( response => setCl(response.data[0].data))
     .catch(console.log)
-  }, [])
-
+  }
 
   // setCurPage, setSecondPage를 하나의 핸들함수로 수정
   const handleOnClickMyPage = ({ curPageData = curPage, secondPageData = secondPage }) => {
@@ -29,67 +25,190 @@ export default function AppClassPage({DB, userId}) {
   }
 
   // 클래스 개설
-  const handleOnClickAddClass = async (title) => {
+  const handleOnClickAddClass = (title) => {
 
     const mainTitle = title
     const id = cl.length === 0 ? 1 : cl[cl.length - 1].id + 1;
-    
-    const clId = 1
-    const clImage = "./logo192.png"
-    const clTitle = "강의 제목"
-    const clName = "이름"
-    const clTime = "날짜/시간"
-    const clStep = "강의 내용"
-
     const data = { 
-      id: id, 
-      mainTitle: mainTitle, 
+      id,
+      mainTitle, 
       classData: [
         { 
-          id: clId, 
-          image: clImage, 
-          title: clTitle, 
-          name: clName, 
-          time: clTime, 
-          step: clStep 
+          id: 1, 
+          image: "./logo192.png", 
+          title: "강의 제목", 
+          name: "이름", 
+          time: "날짜/시간", 
+          step: "강의 내용" 
         }
       ] 
     }
+    const newCl = [...cl, data]
 
-    axios.post("http://localhost:4000/classes/userID="+userId, data)
-    .then( response => alert(JSON.stringify(response.data)))
-    .catch( error => console.log(error, 'error'))
-
-
-    // const message = await addClass(userId, title);
-    // alert(message)
+    // get을 통해서 id를 받아오고, id를 통해서 pacth를 한다
+    axios.get("http://localhost:4000/classes", {params: {userID: userId}})
+    .then( response => {
+      if(response.data && response.data.length > 0){
+        const id = response.data[0].id;
+        return id;
+      }
+      else throw new Error("userId에 해당하는 data가 없습니다");
+    })
+    .then( id => {
+      return axios.patch('http://localhost:4000/classes/'+id, {data: newCl})
+    } )
+    .then( () => {
+      alert("["+title+"] 를 추가하는데 성공하였습니다")
+      getClaases();
+    } )
+    .catch(console.log)
   }
+
+
   // 클래스 수정
-  const handleOnClickUpdateClass = async (id, mainTitle) => {
-    const message = await updateClass(userId, id, mainTitle);
-    alert(message)
+  const handleOnClickUpdateClass = (id, mainTitle) => {
+
+    const updateData =  cl.map( c => {
+      if(c.id === id) return {...c, mainTitle}
+      else return c
+    })
+
+    // get을 통해서 id를 받아오고, id를 통해서 pacth를 한다
+    axios.get("http://localhost:4000/classes", {params: {userID: userId}})
+    .then( response => {
+      if(response.data && response.data.length > 0){
+        const id = response.data[0].id;
+        return id;
+      }
+      else throw new Error("userId에 해당하는 data가 없습니다");
+    })
+    .then( id => {
+      return axios.patch('http://localhost:4000/classes/'+id, {data: updateData})
+    } )
+    .then( () => {
+      alert("["+mainTitle+"] 으로 수정하는데 성공하였습니다")
+      getClaases();
+    } )
+    .catch(console.log)
+
   }
   // 클래스 삭제
-  const handleOnClickRemoveClass = async (id) => {
-    const message = await removeClass(userId, id);
-    alert(message)
+  const handleOnClickRemoveClass = (id) => {
+
+    const deleteData = cl.filter( c => c.id !== id )
+
+    // get을 통해서 id를 받아오고, id를 통해서 pacth를 한다
+    axios.get("http://localhost:4000/classes", {params: {userID: userId}})
+    .then( response => {
+      if(response.data && response.data.length > 0){
+        const id = response.data[0].id;
+        return id;
+      }
+      else throw new Error("userId에 해당하는 data가 없습니다");
+    })
+    .then( id => {
+      return axios.patch('http://localhost:4000/classes/'+id, {data: deleteData})
+    } )
+    .then( () => {
+      alert("삭제되었습니다")
+      getClaases();
+    } )
+    .catch(console.log)
+
   }
 
-  // 강의 개설
-  const handleOnClickAddClassData = async (id, title = '제목', name = '이름', time = '날짜/시간') => {
-    const message = await addClassData(userId, id, title, name, time);
-    alert(message)
+  // 강의(수업) 개설
+  const handleOnClickAddClassData = ({id, image = "./logo192.png", title = '제목', name = '이름', time = '날짜/시간', step = "강의 내용"}) => {
+
+    const createClassData = cl.map( data => {
+        if (data.id === id) {
+          const classId = data.classData.length === 0 ? 1 : data.classData[data.classData.length - 1].id + 1;
+          return { ...data, classData: [...data.classData, { id:classId, image, title, name, time, step }] }
+        }
+        return data
+      } 
+    )
+
+    // get을 통해서 id를 받아오고, id를 통해서 pacth를 한다
+    axios.get("http://localhost:4000/classes", {params: {userID: userId}})
+    .then( response => {
+      if(response.data && response.data.length > 0){
+        const id = response.data[0].id;
+        return id;
+      }
+      else throw new Error("userId에 해당하는 data가 없습니다");
+    })
+    .then( id => {
+      return axios.patch('http://localhost:4000/classes/'+id, {data: createClassData})
+    } )
+    .then( () => {
+      alert("["+title+"] 수업을 추가하는데 성공하였습니다")
+      getClaases();
+    } )
+    .catch(console.log)
   }
-  // 강의 수정
-  const handleOnClickUpdateClassData = async (curPage, classId, title, name, time, step) => {
-    const message = await updateClassData(userId, curPage, classId, title, name, time, step);
-    alert(message)
+
+  // 강의(수업 내용) 수정
+  const handleOnClickUpdateClassData = (curPage, classId, title, name, time, step) => {
+
+    const updateClassData = cl.map( data => {
+        if (data.id === curPage) {
+          return {...data, classData: data.classData.map( c => {
+            if (c.id === classId) return { ...c, title, name, time, step }
+            else return c
+          })
+          }
+        }
+        else return data
+      }
+    )
+
+    // get을 통해서 id를 받아오고, id를 통해서 pacth를 한다
+    axios.get("http://localhost:4000/classes", {params: {userID: userId}})
+    .then( response => {
+      if(response.data && response.data.length > 0){
+        const id = response.data[0].id;
+        return id;
+      }
+      else throw new Error("userId에 해당하는 data가 없습니다");
+    })
+    .then( id => {
+      return axios.patch('http://localhost:4000/classes/'+id, {data: updateClassData})
+    } )
+    .then( () => {
+      alert("수업 내용을 수정하였습니다")
+      getClaases();
+    } )
+    .catch(console.log)
+
   }
-  // 강의 삭제
-  const handleOnClickRemoveClassData = async (curPage, secondPage) => {
-    const message = await removeClassData(userId, curPage, secondPage);
-    setSecondPage(0);
-    alert(message)
+
+  // 강의(수업) 삭제
+  const handleOnClickRemoveClassData = (curPage, secondPage) => {
+    const deleteClassData = cl.map( data => {
+        if (data.id === curPage) return { ...data, classData: data.classData.filter(c => c.id !== secondPage) }
+        else return data
+      }
+    )
+
+    // get을 통해서 id를 받아오고, id를 통해서 pacth를 한다
+    axios.get("http://localhost:4000/classes", {params: {userID: userId}})
+    .then( response => {
+      if(response.data && response.data.length > 0){
+        const id = response.data[0].id;
+        return id;
+      }
+      else throw new Error("userId에 해당하는 data가 없습니다");
+    })
+    .then( id => {
+      return axios.patch('http://localhost:4000/classes/'+id, {data: deleteClassData})
+    } )
+    .then( () => {
+      alert("수업을 삭제하였습니다")
+      setSecondPage(0)
+      getClaases();
+    } )
+    .catch(console.log)
   }
 
 
@@ -177,6 +296,7 @@ const ChangePage = ({ curPage = 0, cl, handleOnClickMyPage, handleOnClickAddClas
     )
   }
 }
+
 // 해당 클래스에 강의를 띄움 
 const ClassNumber = ({ id, title, classData, handleOnClickMyPage, handleOnClickAddClassData }) => {
   const [curClass, setCurClass] = useState(0);
@@ -233,7 +353,7 @@ const UpdatePage = ({ id, handleOnClickAddClassData }) => {
 
     <button className='addLecture' onClick={() => {
       setIsUpdate(false);
-      handleOnClickAddClassData(id, title, name, time);
+      handleOnClickAddClassData({id, title, name, time});
       setTitle('제목'); setName('이름'); setTime('날짜/시간');
     }}>추가하기</button>
     <button className='addLecture' onClick={() => setIsUpdate(false)}>취소하기</button>
