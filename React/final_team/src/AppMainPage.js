@@ -9,6 +9,8 @@ import axios from "axios";
 */
 
 export default function AppMainPage({userId}) {
+
+  //axios -> json 으로 데이터 받아오는 경우
   const [users, setUsers] = useState([]);
   const [notice, setNotice] = useState([]);
 
@@ -22,11 +24,6 @@ export default function AppMainPage({userId}) {
     .then( response => setNotice(response.data) )
     .catch(console.log)
   }, [])
-
-  useEffect(()=>{
-    //console.log(notice)
-  }, [notice])
-
 
 
   // div에 height: '85%'만 놔두고 나머지는 삭제해도 상관없습니다.

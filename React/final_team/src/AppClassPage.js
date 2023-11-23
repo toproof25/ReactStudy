@@ -274,10 +274,10 @@ const NavList = ({ id = 0, mainTitle = '', handleOnClickMyPage, curNav, setCurNa
 const MainPage = ({ curPage = 0, cl, secondPage, handleOnClickMyPage, handleOnClickAddClassData, handleOnClickUpdateClassData, handleOnClickRemoveClassData, handleOnClickAddClass, handleOnClickUpdateClass, handleOnClickRemoveClass }) => {
 
   return (<div>
-    <div id='MainPage'>
+    <div id='MainPage' style={{width: curPage==='MyPage' ? '100%' : '50%'}}>
       <ChangePage {...{ curPage, cl, handleOnClickMyPage, handleOnClickAddClassData, handleOnClickAddClass, handleOnClickUpdateClass, handleOnClickRemoveClass }} />
     </div>
-    <div id='SecondPage'>
+    <div id='SecondPage' style={{width: curPage==='MyPage' ? '0%' : '50%'}}>
       <DetailPage {...{ curPage, cl, secondPage, handleOnClickRemoveClassData, handleOnClickUpdateClassData }} />
     </div>
   </div>)

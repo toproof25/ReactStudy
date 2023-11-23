@@ -10,6 +10,9 @@ import axios from 'axios';
 */
 
 export default function AppNotice({name, userId}) {
+
+
+  //axios -> json 으로 데이터 받아오는 경우
   const [notice, setNotice] = useState([]);
 
   // 컴포넌트 실행되면 json notice(공지사항) 정보를 get해서 setNotice 함

@@ -57,8 +57,6 @@ nav ul > li > button:hover {
   cursor: pointer;
   background-color: #777;
 }
-
-
 /* 중앙 오른쪽 메인 각 강의, 강의 내용들 나오는 화면 */
 section{
   width: 90%;
@@ -73,7 +71,6 @@ section > div{
 }
 /* 왼쪽 화면, float left로 화면을 2개로 나눔 */
 section div#MainPage{
-  width: 50%;
   height: 100%;
   background-color: beige;
   float: left;
@@ -212,7 +209,6 @@ section div#MainPage li.myPageClass span.maPageBt button:hover{
 
 /* 수업 선택 시 우측에 나오는 화면 */
 section div#SecondPage{
-  width: 50%;
   height: 100%;
   background-color: rgba(212, 195, 175, 0.308);
   float: left;
