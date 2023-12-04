@@ -2,7 +2,8 @@
   "users": [
     {
       "userID": 1,
-      "id": "test",
+      "id": 1,
+      "loginID": "test",
       "password": "1234",
       "name": "홍길동",
       "adress": "경기도 용인시 기흥구 강남로 40",
@@ -15,7 +16,8 @@
     },
     {
       "userID": 2,
-      "id": "qwer",
+      "id": 2,
+      "loginID": "qwer",
       "password": "qwer1234",
       "name": "김철수",
       "adress": "경기 용인시 기흥구 강남로 3",
@@ -135,20 +137,6 @@
               "name": "최병하",
               "time": "목요일(9:00 ~ 14:30)",
               "step": "C++ 클래스와 함수를 이용하여 객체지향을 배워봅니다"
-            }
-          ]
-        },
-        {
-          "id": 4,
-          "mainTitle": "강의 이름",
-          "classData": [
-            {
-              "id": 1,
-              "image": "./logo192.png",
-              "title": "강의 제목",
-              "name": "이름",
-              "time": "날짜/시간",
-              "step": "강의 내용"
             }
           ]
         }
