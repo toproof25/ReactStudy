@@ -85,7 +85,7 @@ const Header = ({ login, setLogin, name, handleOnClickSetPage }) => {
   return (
     <div>
       <img src="./logo512.png" alt="사이트 사진" />
-      <h1> 기말 팀 프로젝트 </h1>
+      <h1> 유사팀 강의 사이트 </h1>
       {(() => {
         // 로그인이 되어 있을 때만 로그아웃 버튼이 상단에 배치됨
         if (login)
