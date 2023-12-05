@@ -44,7 +44,7 @@ export default function App() {
     else alert("로그인을 먼저 해주세요.")
   }
 
-  const handleSetsetUserId = (id) => { // page변수를 관리하는 핸들러
+  const handleSetUserId = (id) => { // userID를 관리하는 핸들러
     setUserId(id);
   }
 
@@ -64,12 +64,9 @@ export default function App() {
     <div className="main">
       <header>
         <Header {...{login, setLogin, name, handleOnClickSetPage}} />
-
-        <button onClick={()=>setUserId(1)}>유저 1</button>
-        <button onClick={()=>setUserId(2)}>유저 2</button>
       </header>
 
-      <Main {...{ login, userId, name, setLogin, page, handleSetsetUserId }} />
+      <Main {...{ login, userId, name, setLogin, page, handleSetUserId }} />
 
       <footer>
         <div>*김상옥 201904022 / 김윤서 202104025</div>
@@ -114,9 +111,9 @@ const Header = ({ login, setLogin, name, handleOnClickSetPage }) => {
   );
 };
 
-const Main = ({ login, userId, name, setLogin, page, handleSetsetUserId }) => {
+const Main = ({ login, userId, name, setLogin, page, handleSetUserId }) => {
   if (!login || page==="Login") { // 로그인 페이지
-    return <AppLogin setLogin={setLogin} handleSetsetUserId={handleSetsetUserId} />;
+    return <AppLogin setLogin={setLogin} handleSetUserId={handleSetUserId} />;
   }
   else if (page === "MainPage") { // 메인 페이지
     return <AppMainPage userId={userId} />

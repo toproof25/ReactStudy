@@ -10,7 +10,7 @@ import axios from 'axios';
  회원가입, axios.post로 users에 새로운 데이터 추가
 */
 
-export default function AppLogin({ setLogin, handleSetsetUserId }) {
+export default function AppLogin({ setLogin, handleSetUserId }) {
 
   const [users, setUsers] = useState([]);
 
@@ -42,7 +42,7 @@ export default function AppLogin({ setLogin, handleSetsetUserId }) {
         style={{ width: "150px", height: "50px" }}
         onClick={() => {
           setLogin(true);
-          handleSetsetUserId(1);
+          handleSetUserId(1);
         }}
       >
         ----Login----

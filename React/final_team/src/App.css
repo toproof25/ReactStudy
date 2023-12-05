@@ -6,7 +6,7 @@ html, body{
   height: 1600px; width: 1600px; margin: 0 auto;
   background-color: #fff; }
 /* 전체를 감싸는 div도 높이 1600px */
-div.main{height: 1600px;}
+div.main{height: 1600px; margin-top: 5px;}
 
 /* 사이트 상단 */
 
