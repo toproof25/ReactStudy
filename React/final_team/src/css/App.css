@@ -3,10 +3,10 @@
 
 /* 너비 1600px 높이 1500px로 지정, margin auto로 가운데 정렬 , 배경색 화이트*/
 html, body{
-  height: 1600px; width: 1600px; margin: 0 auto;
+  height: 1300px; width: 1600px; margin: 0 auto;
   background-color: #fff; }
 /* 전체를 감싸는 div도 높이 1600px */
-div.main{height: 1600px; margin-top: 5px;}
+div.main{height: 1300px; margin-top: 5px;}
 
 /* 사이트 상단 */
 
