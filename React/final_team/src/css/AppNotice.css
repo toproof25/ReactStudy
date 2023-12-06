@@ -1,0 +1,58 @@
+/* 공지사항 작성, 테이블을 감싸는 div */
+div#NoticePage div#notice{
+  padding: 15px;
+  width: 90%;
+  height: 80%;
+  margin: 0 auto;
+  background-color: white;
+  border: 2px solid gray;
+  overflow: auto;
+}
+/* 공지사항 테이블 */
+div#NoticePage div#notice table{
+  background-color: white;
+  margin: 10px auto;
+  text-align: center;
+  width: 95%;
+  border-collapse: collapse;
+}
+/* 공지사항 테블의 thead */
+div#NoticePage div#notice table thead{
+  font-weight: bolder;
+  font-size: 22px;
+  background-color: rgb(206, 206, 206);
+  border-top: 4px solid black;
+  border-bottom: 4px solid black;
+}
+div#NoticePage div#notice table > thead td{
+  padding: 10px;
+}
+
+
+/* 공지사항 테이블의 tbody 테두리 설정*/
+div#NoticePage div#notice table > tbody tr{
+  border-bottom: 1px solid black;
+}
+/* 공지사항 테이블의 패딩 설정 */
+div#NoticePage div#notice table > tbody td{
+  padding: 10px;
+}
+div#NoticePage div#notice table > tbody tr:hover{
+  background-color: rgb(206, 206, 206);
+}
+div#NoticePage div#notice table > tbody td:nth-child(1){
+  width: 5%;
+}
+div#NoticePage div#notice table > tbody td:nth-child(2){
+  width: 55%;
+}
+div#NoticePage div#notice table > tbody td:nth-child(2):hover{
+  background-color: rgba(148, 148, 148);
+  cursor: pointer;
+}
+div#NoticePage div#notice table > tbody td:nth-child(3){
+  width: 20%;
+}
+div#NoticePage div#notice table > tbody td:nth-child(4){
+  width: 20%;
+}

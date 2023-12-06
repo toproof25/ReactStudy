@@ -87,7 +87,8 @@
               "title": "HTML / CSS / JavaScript",
               "name": "최권택",
               "time": "화요일(11:50 ~ 14:20)",
-              "step": "HTML, CSS, JS의 기초를 다룹니다."
+              "step": "HTML, CSS, JS의 기초를 다룹니다.",
+              "url": "https://www.youtube.com/embed/6GECT2Jrr_g"
             },
             {
               "id": 2,
@@ -95,7 +96,8 @@
               "title": "React 설치",
               "name": "최권택",
               "time": "화요일(11:50 ~ 14:20)",
-              "step": "React를 설치해봅니다"
+              "step": "React를 설치해봅니다",
+              "url": "https://www.youtube.com/embed/6GECT2Jrr_g"
             },
             {
               "id": 3,
@@ -103,7 +105,8 @@
               "title": "React 기본 문법",
               "name": "최권택",
               "time": "화요일(11:50 ~ 14:20)",
-              "step": "React 기본 문법을 배우고 기초적인 웹을 만들어 봅니다"
+              "step": "React 기본 문법을 배우고 기초적인 웹을 만들어 봅니다",
+              "url": "https://www.youtube.com/embed/6GECT2Jrr_g"
             }
           ]
         },
@@ -117,7 +120,8 @@
               "title": "안드로이드 스튜디오 설치",
               "name": "양재형",
               "time": "화요일(14:30 ~ 17:20)",
-              "step": "안드로이드 스튜디오와 자바를 설치합니다"
+              "step": "안드로이드 스튜디오와 자바를 설치합니다",
+              "url": "https://www.youtube.com/embed/6GECT2Jrr_g"
             },
             {
               "id": 2,
@@ -125,7 +129,8 @@
               "title": "자바 문법",
               "name": "양재형",
               "time": "화요일(14:30 ~ 17:20)",
-              "step": "자바의 기본적인 문법과 이론을 공부합니다"
+              "step": "자바의 기본적인 문법과 이론을 공부합니다",
+              "url": "https://www.youtube.com/embed/6GECT2Jrr_g"
             },
             {
               "id": 3,
@@ -133,7 +138,8 @@
               "title": "버튼 구현",
               "name": "양재형",
               "time": "화요일(14:30 ~ 17:20)",
-              "step": "실제 앱을 제작하기 위한 기본적은 버튼을 구현해봅니다"
+              "step": "실제 앱을 제작하기 위한 기본적은 버튼을 구현해봅니다",
+              "url": "https://www.youtube.com/embed/6GECT2Jrr_g"
             }
           ]
         },
@@ -147,7 +153,8 @@
               "title": "C++ 기초 문법",
               "name": "최병하",
               "time": "목요일(9:00 ~ 14:30)",
-              "step": "C++에서 사용하는 기본 문법을 다룹니다"
+              "step": "C++에서 사용하는 기본 문법을 다룹니다",
+              "url": "https://www.youtube.com/embed/6GECT2Jrr_g"
             },
             {
               "id": 2,
@@ -155,7 +162,8 @@
               "title": "C++ 제어문",
               "name": "최병하",
               "time": "목요일(9:00 ~ 14:30)",
-              "step": "C++에서 사용하는 if, switch, for, while, do-while을 배우고 응용합니다"
+              "step": "C++에서 사용하는 if, switch, for, while, do-while을 배우고 응용합니다",
+              "url": "https://www.youtube.com/embed/6GECT2Jrr_g"
             },
             {
               "id": 3,
@@ -163,7 +171,8 @@
               "title": "C++ 클래스와 함수",
               "name": "최병하",
               "time": "목요일(9:00 ~ 14:30)",
-              "step": "C++ 클래스와 함수를 이용하여 객체지향을 배워봅니다"
+              "step": "C++ 클래스와 함수를 이용하여 객체지향을 배워봅니다",
+              "url": "https://www.youtube.com/embed/6GECT2Jrr_g"
             }
           ]
         }
@@ -183,7 +192,8 @@
               "title": "가상현실이란?",
               "name": "백성용",
               "time": "수요일(9:00~11:40)",
-              "step": "가상현일이 무엇일까요"
+              "step": "가상현일이 무엇일까요",
+              "url": "https://www.youtube.com/embed/6GECT2Jrr_g"
             },
             {
               "id": 2,
@@ -191,7 +201,8 @@
               "title": "유니티 설치",
               "name": "백성용",
               "time": "수요일(9:00~11:40)",
-              "step": "유니티를 통해 가상현실 게임 개발하기"
+              "step": "유니티를 통해 가상현실 게임 개발하기",
+              "url": "https://www.youtube.com/embed/qocQ7ekeMI4"
             },
             {
               "id": 3,
@@ -199,7 +210,8 @@
               "title": "VR장비 세팅",
               "name": "백성용",
               "time": "수요일(9:00~11:40)",
-              "step": "오큘러스 퀘스트를 세팅합니다"
+              "step": "오큘러스 퀘스트를 세팅합니다",
+              "url": "https://www.youtube.com/embed/6GECT2Jrr_g"
             }
           ]
         },
@@ -213,7 +225,8 @@
               "title": "인성과학문 영상 강의",
               "name": "강현우",
               "time": "목요일(14:40~15:30)",
-              "step": "인성과학문"
+              "step": "인성과학문",
+              "url": "https://www.youtube.com/embed/6GECT2Jrr_g"
             },
             {
               "id": 2,
@@ -221,7 +234,8 @@
               "title": "인성과학문 영상 강의2",
               "name": "강현우",
               "time": "목요일(14:40~15:30)",
-              "step": "인성과학문2"
+              "step": "인성과학문2",
+              "url": "https://www.youtube.com/embed/6GECT2Jrr_g"
             }
           ]
         },
@@ -235,7 +249,8 @@
               "title": "블렌더 설치",
               "name": "신은하",
               "time": "금요일(11:40 ~ 2:30)",
-              "step": "블렌더를 설치합니다"
+              "step": "블렌더를 설치합니다",
+              "url": "https://www.youtube.com/embed/6GECT2Jrr_g"
             },
             {
               "id": 2,
@@ -243,7 +258,8 @@
               "title": "간단한 모델링",
               "name": "신은하",
               "time": "금요일(11:40 ~ 2:30)",
-              "step": "간단한 캐릭터를 모델링 합니다"
+              "step": "간단한 캐릭터를 모델링 합니다",
+              "url": "https://www.youtube.com/embed/6GECT2Jrr_g"
             },
             {
               "id": 3,
@@ -251,7 +267,8 @@
               "title": "리본 추가하기",
               "name": "신은하",
               "time": "금요일(11:40 ~ 2:30)",
-              "step": "모델링에 뼈를 추가하여 움직입니다."
+              "step": "모델링에 뼈를 추가하여 움직입니다.",
+              "url": "https://www.youtube.com/embed/6GECT2Jrr_g"
             }
           ]
         }

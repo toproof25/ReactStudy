@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import './css/AppNotice.css'
 
 export default function AppNotice({ name, userId }) {
   //axios -> json 으로 데이터 받아오는 경우
@@ -37,7 +38,14 @@ export default function AppNotice({ name, userId }) {
   };
 
   //공지사항 추가
-  const handleOnclickAddNotice = ({ title, name, date, content }) => {
+  const handleOnclickAddNotice = ({ title, content }) => {
+
+    const today = new Date();
+    const year = today.getFullYear();
+    const month = ('0' + (today.getMonth() + 1)).slice(-2);
+    const day = ('0' + today.getDate()).slice(-2);
+    const date = year + '-' + month  + '-' + day;
+
     const id = notice.length === 0 ? 1 : notice[notice.length - 1].id + 1;
     const data = {
       id,
@@ -68,8 +76,8 @@ export default function AppNotice({ name, userId }) {
   // 작성자 -> name
   // div에 height: '85%'만 놔두고 나머지는 삭제해도 상관 x
   return (
-    <div style={{ height: '85%', backgroundColor: 'orange' }}>
-      <h1 style={{ fontSize: '100px' }}>공지사항 페이지</h1>
+    <div id='NoticePage' style={{ height: '85%', backgroundColor: 'rgb(206, 206, 206)', paddingTop: '30px' }}>
+      <h1 style={{ fontSize: '50px', marginLeft: '70px', marginBottom:'20px' }}>공지사항 페이지</h1>
       {page == 'main' && (
         <Main
           setPage={setPage}
@@ -80,18 +88,7 @@ export default function AppNotice({ name, userId }) {
         />
       )}
       {page == 'page2' && <Test text={text} setPage={setPage} />}
-      <br />
-      <br />
-      {notice.map((n) => (
-        <div key={n.id}>
-          <div>id : {n.id}</div>
-          <div>title : {n.title}</div>
-          <div>name : {n.name}</div>
-          <div>date : {n.date}</div>
-          <div>content : {n.content}</div>
-          <br />
-        </div>
-      ))}
+
     </div>
   );
 }
@@ -102,14 +99,12 @@ const Main = ({
   handleOnclickRemoveNotice,
   handleOnclickAddNotice,
 }) => {
-  return (
-    <table style={{ width: '1000px' }}>
+  return ( <div id='notice'>
+    <div>
+      <AddNotice handleOnclickAddNotice={handleOnclickAddNotice} />
+    </div>
+    <table>
       <thead>
-        <tr>
-          <div>
-            <AddNotice handleOnclickAddNotice={handleOnclickAddNotice} />
-          </div>
-        </tr>
         <tr>
           <td>번호</td>
           <td>제목</td>
@@ -117,10 +112,10 @@ const Main = ({
           <td>작성일</td>
         </tr>
       </thead>
-      {notice.map((n) => (
-        <tbody>
+      {notice.map((n, index) => (
+        <tbody key={n.id}>
           <tr>
-            <td>{n.id}</td>
+            <td>{index+1}</td>
             <td
               onClick={() => {
                 setPage('page2');
@@ -140,6 +135,7 @@ const Main = ({
         </tbody>
       ))}
     </table>
+    </div>
   );
 };
 const Test = ({ text, setPage }) => {
@@ -162,8 +158,6 @@ const Test = ({ text, setPage }) => {
 const AddNotice = ({ id, handleOnclickAddNotice }) => {
   const [isAdd, setIsAdd] = useState(false);
   const [title, settitle] = useState('공지사항 제목');
-  const [name, setname] = useState('작성자');
-  const [date, setdate] = useState('작성 일자');
   const [content, setcontent] = useState('공지 내용');
 
   if (isAdd)
@@ -180,25 +174,6 @@ const AddNotice = ({ id, handleOnclickAddNotice }) => {
         </div>
 
         <div>
-          작성자{' '}
-          <input
-            type="text"
-            size={10}
-            value={name}
-            onChange={(e) => setname(e.target.value)}
-          />
-        </div>
-
-        <div>
-          작성 일자{' '}
-          <input
-            type="text"
-            size={10}
-            value={date}
-            onChange={(e) => setdate(e.target.value)}
-          />
-        </div>
-        <div>
           공지내용{' '}
           <input
             type="text"
@@ -210,10 +185,8 @@ const AddNotice = ({ id, handleOnclickAddNotice }) => {
 
         <button
           onClick={() => {
-            handleOnclickAddNotice({ title, name, date, content });
+            handleOnclickAddNotice({ title, content });
             settitle('제목');
-            setname('작성자');
-            setdate('작성일');
             setcontent('작성내용');
           }}
         >
@@ -222,5 +195,5 @@ const AddNotice = ({ id, handleOnclickAddNotice }) => {
         <button onClick={() => setIsAdd(!isAdd)}>취소하기</button>
       </div>
     );
-  else return <button onClick={() => setIsAdd(!isAdd)}>공지 사항 작성</button>;
+  else return <button style={{fontSize: '20px'}} onClick={() => setIsAdd(!isAdd)}>공지 사항 작성</button>;
 };

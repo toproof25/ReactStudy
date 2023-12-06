@@ -441,7 +441,7 @@ const DetailUpdatePage = ({ curPage, secondPage, classData, handleOnClickRemoveC
         <div className='classTime'>{classData.time}</div>
         <br /><hr /><br />
         <div>
-          <iframe src="https://www.youtube.com/embed/6GECT2Jrr_g?si=qv3CqJbUbOC6kIQg" style={{width: '500px', height: '300px'}}></iframe>
+          <iframe src={classData.url} style={{width: '500px', height: '300px'}}></iframe>
         </div>
         <div className='classContent'>강의 내용</div>
         <pre>{classData.step}</pre>
