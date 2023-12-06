@@ -274,6 +274,7 @@ const NavList = ({ id = 0, mainTitle = '', handleOnClickMyPage, curNav, setCurNa
 const MainPage = ({ curPage = 0, cl, secondPage, handleOnClickMyPage, handleOnClickAddClassData, handleOnClickUpdateClassData, handleOnClickRemoveClassData, handleOnClickAddClass, handleOnClickUpdateClass, handleOnClickRemoveClass }) => {
 
   return (<div>
+
     <div id='MainPage' style={{width: curPage==='MyPage' ? '100%' : '50%'}}>
       <ChangePage {...{ curPage, cl, handleOnClickMyPage, handleOnClickAddClassData, handleOnClickAddClass, handleOnClickUpdateClass, handleOnClickRemoveClass }} />
     </div>
@@ -439,6 +440,9 @@ const DetailUpdatePage = ({ curPage, secondPage, classData, handleOnClickRemoveC
         <div className='className'>{classData.name}</div>
         <div className='classTime'>{classData.time}</div>
         <br /><hr /><br />
+        <div>
+          <iframe src="https://www.youtube.com/embed/6GECT2Jrr_g?si=qv3CqJbUbOC6kIQg" style={{width: '500px', height: '300px'}}></iframe>
+        </div>
         <div className='classContent'>강의 내용</div>
         <pre>{classData.step}</pre>
       </div>
