@@ -264,8 +264,8 @@ section div#SecondPage div.classTitle{
   margin-bottom: 15px;
 }
 /* 수업 목록 내용 콘텐츠 - 이미지 부분 */
-section div#SecondPage div.classImage{
-  margin: 20px;
+section div#SecondPage div.classImage > img{
+  width: 70px;
 }
 /* 수업 목록 내용 콘텐츠 - 강사 이름 부분 */
 section div#SecondPage div.className{
@@ -276,6 +276,12 @@ section div#SecondPage div.className{
 /* 수업 목록 내용 콘텐츠 - 날짜/시간 */
 section div#SecondPage div.classTime{
   font-size: 20px;
+  font-weight: bolder;
+  margin: 15px;
+}
+/* 수업 목록 내용 콘텐츠 - url 입력창 */
+section div#SecondPage div.classUrl{
+  font-size: 13px;
   font-weight: bolder;
   margin: 15px;
 }

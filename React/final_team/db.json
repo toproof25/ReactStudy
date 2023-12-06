@@ -1,7 +1,7 @@
 {
   "users": [
     {
-      "userID": 1,
+      "userID": 10108,
       "id": 1,
       "loginID": "test",
       "password": "1234",
@@ -15,7 +15,7 @@
       "day": 1
     },
     {
-      "userID": 2,
+      "userID": 10299,
       "id": 2,
       "loginID": "qwer",
       "password": "qwer1234",
@@ -75,7 +75,7 @@
   "classes": [
     {
       "id": 1,
-      "userID": 1,
+      "userID": 10108,
       "data": [
         {
           "id": 1,
@@ -180,7 +180,7 @@
     },
     {
       "id": 2,
-      "userID": 2,
+      "userID": 10299,
       "data": [
         {
           "id": 1,
@@ -201,8 +201,8 @@
               "title": "유니티 설치",
               "name": "백성용",
               "time": "수요일(9:00~11:40)",
-              "step": "유니티를 통해 가상현실 게임 개발하기",
-              "url": "https://www.youtube.com/embed/qocQ7ekeMI4"
+              "step": "유니티를 통해 가상현실 게임 개발하기\n영상 수정",
+              "url": "https://www.youtube.com/embed/vjhKzvhW-fc"
             },
             {
               "id": 3,
@@ -211,7 +211,7 @@
               "name": "백성용",
               "time": "수요일(9:00~11:40)",
               "step": "오큘러스 퀘스트를 세팅합니다",
-              "url": "https://www.youtube.com/embed/6GECT2Jrr_g"
+              "url": "https://www.youtube.com/embed/_tUDZdlehAk"
             }
           ]
         },

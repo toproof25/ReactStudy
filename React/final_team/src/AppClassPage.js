@@ -118,12 +118,12 @@ export default function AppClassPage({userId}) {
   }
 
   // 강의(수업) 개설
-  const handleOnClickAddClassData = ({id, image = "./logo192.png", title = '제목', name = '이름', time = '날짜/시간', step = "강의 내용"}) => {
+  const handleOnClickAddClassData = ({id, image = "./logo192.png", title = '제목', name = '이름', time = '날짜/시간', step = "강의 내용", urlStr=''}) => {
 
     const createClassData = cl.map( data => {
         if (data.id === id) {
           const classId = data.classData.length === 0 ? 1 : data.classData[data.classData.length - 1].id + 1;
-          return { ...data, classData: [...data.classData, { id:classId, image, title, name, time, step }] }
+          return { ...data, classData: [...data.classData, { id:classId, image, title, name, time, step, urlStr }] }
         }
         return data
       } 
@@ -149,12 +149,24 @@ export default function AppClassPage({userId}) {
   }
 
   // 강의(수업 내용) 수정
-  const handleOnClickUpdateClassData = (curPage, classId, title, name, time, step) => {
+  const handleOnClickUpdateClassData = ({curPage, classId, title, name, time, step, urlStr}) => {
+
+    let url = urlStr
+    if(url.indexOf('embed') === -1){
+      let changeUrl = urlStr
+      const index = changeUrl.indexOf('watch?v=') + 8
+      changeUrl = changeUrl.slice(index, changeUrl.length)
+      const secondIndex = changeUrl.indexOf('&')
+      if(secondIndex !== -1){
+        changeUrl = changeUrl.slice(0, secondIndex)
+      }
+      url = "https://www.youtube.com/embed/"+changeUrl
+    }
 
     const updateClassData = cl.map( data => {
         if (data.id === curPage) {
           return {...data, classData: data.classData.map( c => {
-            if (c.id === classId) return { ...c, title, name, time, step }
+            if (c.id === classId) return { ...c, title, name, time, step, url }
             else return c
           })
           }
@@ -162,6 +174,8 @@ export default function AppClassPage({userId}) {
         else return data
       }
     )
+
+    console.log(updateClassData)
 
     // get을 통해서 id를 받아오고, id를 통해서 pacth를 한다
     axios.get("http://localhost:4000/classes", {params: {userID: userId}})
@@ -245,7 +259,7 @@ const NavBox = ({ cl, handleOnClickMyPage }) => {
         () => {
           handleOnClickMyPage({ curPageData: "MyPage", secondPageData: "MyPage" });
           setCurNav(0);
-      }} >내 클래스</button>
+      }} >마이 강의</button>
     <hr style={{margin: '0 auto 40px auto', marginBottom: '40px', width: "90%"}}/>
     <ul>
       {cl.map((c) => <NavList key={c.id} {...{ id: c.id, mainTitle: c.mainTitle, handleOnClickMyPage, curNav, setCurNav }} />)}
@@ -304,7 +318,7 @@ const ClassNumber = ({ id, title, classData, handleOnClickMyPage, handleOnClickA
 
   return (
     <div id='classNumber'>
-      <h1 className='classTitle'>{title} 강의 목록</h1>
+      <h1 className='classTitle'>{title} 수업 목록</h1>
       <ul>
         {classData.map((cd) => {
           return <li
@@ -412,7 +426,10 @@ const DetailUpdatePage = ({ curPage, secondPage, classData, handleOnClickRemoveC
   const [name, setName] = useState(classData.name)
   const [time, setTime] = useState(classData.time)
   const [step, setStep] = useState(classData.step)
+  const [urlStr, setUrlStr] = useState(classData.url)
 
+  console.log(urlStr, "dsasdsasddsa")
+  console.log(urlStr === undefined)
   // 선택한 강의가 없으면 -> else
   if (updateClass) {
     return <div className='viewContent'>
@@ -422,13 +439,14 @@ const DetailUpdatePage = ({ curPage, secondPage, classData, handleOnClickRemoveC
         <div className='className'><input type='text' value={name} onChange={(e) => setName(e.target.value)} /></div>
         <div className='classTime'><input type='text' value={time} onChange={(e) => setTime(e.target.value)} /></div>
         <br /><hr /><br />
+        <div className='classUrl'><input type='url' value={urlStr} onChange={(e) => setUrlStr(e.target.value)} /></div>
         <div className='classContent'>강의 내용</div>
         <textarea
           value={step}
           onChange={(e) => setStep(e.target.value)}></textarea>
       </div>
       <div className='UpdateDataBt'>
-        <button onClick={() => { handleOnClickUpdateClassData(curPage, secondPage, title, name, time, step); setUpdateClass(false) }}>저장</button>
+        <button onClick={() => { handleOnClickUpdateClassData({curPage, classId: secondPage, title, name, time, step, urlStr}); setUpdateClass(false) }}>저장</button>
       </div>
     </div>
   }
@@ -441,7 +459,8 @@ const DetailUpdatePage = ({ curPage, secondPage, classData, handleOnClickRemoveC
         <div className='classTime'>{classData.time}</div>
         <br /><hr /><br />
         <div>
-          <iframe src={classData.url} style={{width: '500px', height: '300px'}}></iframe>
+          <div>{urlStr === undefined && "영상이 없습니다"}</div>
+          <iframe src={classData.url} style={{width: '600px', height: '400px'}}></iframe>
         </div>
         <div className='classContent'>강의 내용</div>
         <pre>{classData.step}</pre>
@@ -458,7 +477,7 @@ const DetailUpdatePage = ({ curPage, secondPage, classData, handleOnClickRemoveC
 const MyPage = ({ cl, handleOnClickAddClass, handleOnClickUpdateClass, handleOnClickRemoveClass }) => {
   return (
     <div id='MyClassPage'>
-      <h1 className='classTitle'>내 클래스 목록</h1>
+      <h1 className='classTitle'>내 강의 목록</h1>
       <ul>
         {cl.map((c) => {
           return <UpdateLecture key={c.id} cData={c} handleOnClickUpdateClass={handleOnClickUpdateClass} handleOnClickRemoveClass={handleOnClickRemoveClass} />
