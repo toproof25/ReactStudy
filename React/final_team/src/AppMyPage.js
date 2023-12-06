@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "./AppMyPage.css";
+import "./css/AppMyPage.css";
 import axios from 'axios';
 
 export default function AppMainPage({userId}) {

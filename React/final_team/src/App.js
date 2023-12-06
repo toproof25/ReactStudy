@@ -5,7 +5,7 @@ import AppMainPage from "./AppMainPage.js";
 import AppNotice from "./AppNotice.js";
 import AppMyPage from "./AppMyPage.js";
 import axios from "axios";
-import "./App.css";
+import "./css/App.css";
 
 /*
 로그인 페이지 

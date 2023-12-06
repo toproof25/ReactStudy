@@ -80,7 +80,8 @@ export default function AppNotice({ name, userId }) {
         />
       )}
       {page == 'page2' && <Test text={text} setPage={setPage} />}
-
+      <br />
+      <br />
       {notice.map((n) => (
         <div key={n.id}>
           <div>id : {n.id}</div>

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import "./AppClassPage.css";
+import "./css/AppClassPage.css";
 import axios from 'axios';
 
 export default function AppClassPage({userId}) {
