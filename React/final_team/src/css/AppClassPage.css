@@ -232,10 +232,11 @@ section div#SecondPage div.content{
 section div#SecondPage div.content pre{
   padding: 15px;
   width: 600px;
-  height: 350px;
+  height: 200px;
   text-align: left;
   font-size: 15px;
   overflow: auto;
+  margin: 0 auto;
 }
 /* 수업 목록 내용 콘텐츠 [수정하기] 버튼 누를 시 input태그 */
 section div#SecondPage div.content div input{

@@ -149,7 +149,7 @@ export default function AppClassPage({userId}) {
   }
 
   // 강의(수업 내용) 수정
-  const handleOnClickUpdateClassData = ({curPage, classId, title, name, time, step, urlStr}) => {
+  const handleOnClickUpdateClassData = ({curPage, classId, title, name, time, step, urlStr='https://www.youtube.com/'}) => {
 
     let url = urlStr
     if(url.indexOf('embed') === -1){
@@ -174,8 +174,6 @@ export default function AppClassPage({userId}) {
         else return data
       }
     )
-
-    console.log(updateClassData)
 
     // get을 통해서 id를 받아오고, id를 통해서 pacth를 한다
     axios.get("http://localhost:4000/classes", {params: {userID: userId}})
@@ -348,7 +346,10 @@ const UpdatePage = ({ id, handleOnClickAddClassData }) => {
 
   const [title, setTitle] = useState('제목');
   const [name, setName] = useState('이름');
-  const [time, setTime] = useState('날짜/시간');
+
+  const [select, setSelect] = useState('월') // 요일
+  const [btime, setBtime] = useState('00:00') // 시작 시간
+  const [atime, setAtime] = useState('00:01') // 끝나는 시간
 
   if (isUpdate) return <div>
     <div className='classBox'>
@@ -357,7 +358,17 @@ const UpdatePage = ({ id, handleOnClickAddClassData }) => {
           <tr>
             <td rowSpan={2}> 이미지 </td>
             <td> 제목 : <input type='text' size={10} value={title} onChange={(e) => setTitle(e.target.value)} /></td>
-            <td rowSpan={2}> 시간 : <input type='text' size={10} value={time} onChange={(e) => setTime(e.target.value)} /></td>
+            <td rowSpan={2}> 
+              <select value={select} onChange={(e) => setSelect(e.target.value)}>
+                <option value='월'>월</option>
+                <option value='화'>화</option>
+                <option value='수'>수</option>
+                <option value='목'>목</option>
+                <option value='금'>금</option>
+              </select>
+              <input type='time' value={btime} onChange={(e) => setBtime(e.target.value)} />
+              <input type='time' value={atime} onChange={(e) => setAtime(e.target.value)} />
+            </td>
           </tr>
           <tr>
             <td> 이름 : <input type='text' size={10} value={name} onChange={(e) => setName(e.target.value)} /> </td>
@@ -368,8 +379,8 @@ const UpdatePage = ({ id, handleOnClickAddClassData }) => {
 
     <button className='addLecture' onClick={() => {
       setIsUpdate(false);
-      handleOnClickAddClassData({id, title, name, time});
-      setTitle('제목'); setName('이름'); setTime('날짜/시간');
+      handleOnClickAddClassData({id, title, name, time: select+"요일"+'('+btime+"~"+atime+')'});
+      setTitle('제목'); setName('이름'); setSelect('월'); setBtime('00:00'); setAtime('23:59');
     }}>추가하기</button>
     <button className='addLecture' onClick={() => setIsUpdate(false)}>취소하기</button>
   </div>
@@ -424,12 +435,14 @@ const DetailUpdatePage = ({ curPage, secondPage, classData, handleOnClickRemoveC
 
   const [title, setTitle] = useState(classData.title)
   const [name, setName] = useState(classData.name)
-  const [time, setTime] = useState(classData.time)
   const [step, setStep] = useState(classData.step)
   const [urlStr, setUrlStr] = useState(classData.url)
 
-  console.log(urlStr, "dsasdsasddsa")
-  console.log(urlStr === undefined)
+  const timeStr = classData.time
+  const [select, setSelect] = useState(timeStr[0]) // 요일
+  const [btime, setBtime] = useState(timeStr.slice(timeStr.indexOf('(')+1, timeStr.indexOf('~'))) // 시작 시간
+  const [atime, setAtime] = useState(timeStr.slice(timeStr.indexOf('~')+1, timeStr.indexOf(')'))) // 끝나는 시간
+
   // 선택한 강의가 없으면 -> else
   if (updateClass) {
     return <div className='viewContent'>
@@ -437,16 +450,28 @@ const DetailUpdatePage = ({ curPage, secondPage, classData, handleOnClickRemoveC
         <div className='classTitle'><input type='text' value={title} onChange={(e) => setTitle(e.target.value)} /></div>
         <div className='classImage'><img src={classData.image} alt='사진없음' /></div>
         <div className='className'><input type='text' value={name} onChange={(e) => setName(e.target.value)} /></div>
-        <div className='classTime'><input type='text' value={time} onChange={(e) => setTime(e.target.value)} /></div>
+
+        <select value={select} onChange={(e) => setSelect(e.target.value)}>
+          <option value='월'>월</option>
+          <option value='화'>화</option>
+          <option value='수'>수</option>
+          <option value='목'>목</option>
+          <option value='금'>금</option>
+        </select>
+        <input type='time' value={btime} onChange={(e) => setBtime(e.target.value)} />
+        <input type='time' value={atime} onChange={(e) => setAtime(e.target.value)} />
+
+        
         <br /><hr /><br />
         <div className='classUrl'><input type='url' value={urlStr} onChange={(e) => setUrlStr(e.target.value)} /></div>
         <div className='classContent'>강의 내용</div>
         <textarea
           value={step}
-          onChange={(e) => setStep(e.target.value)}></textarea>
+          onChange={(e) => setStep(e.target.value)}>
+        </textarea>
       </div>
       <div className='UpdateDataBt'>
-        <button onClick={() => { handleOnClickUpdateClassData({curPage, classId: secondPage, title, name, time, step, urlStr}); setUpdateClass(false) }}>저장</button>
+        <button onClick={() => { handleOnClickUpdateClassData({curPage, classId: secondPage, title, name, time: select+"요일"+'('+btime+"~"+atime+')', step, urlStr}); setUpdateClass(false) }}>저장</button>
       </div>
     </div>
   }
