@@ -6,10 +6,10 @@
       "loginID": "test",
       "password": "1234",
       "name": "홍길동",
-      "adress": "경기도 용인시 기흥구 강남로 40",
+      "address": "경기도 용인시 기흥구 강남로 40",
       "phone": "010-1234-5678",
       "email": "test@gmail.com",
-      "gender": "man",
+      "gender": "남자",
       "year": 2000,
       "month": 1,
       "day": 1
@@ -20,13 +20,27 @@
       "loginID": "qwer",
       "password": "qwer1234",
       "name": "김철수",
-      "adress": "경기 용인시 기흥구 강남로 3",
+      "address": "경기 용인시 기흥구 강남로 3",
       "phone": "010-1122-3344",
       "email": "qwer@naver.com",
-      "gender": "woman",
+      "gender": "여자",
       "year": 1999,
       "month": 10,
       "day": 5
+    },
+    {
+      "id": 3,
+      "userID": 10300,
+      "loginID": "asdf",
+      "password": "asdf1234",
+      "name": "김상옥",
+      "address": "용인시",
+      "phone": "01012345678",
+      "email": "asdf@naver.com",
+      "gender": "남자",
+      "year": "2000",
+      "month": "9",
+      "day": "22"
     }
   ],
   "day": [
@@ -70,6 +84,20 @@
       "name": "작성자22",
       "date": "2023-11-18",
       "content": "414132413134134"
+    },
+    {
+      "id": 3,
+      "title": "공지사항 제목",
+      "name": "김철수",
+      "date": "2023-12-09",
+      "content": "공지 내용"
+    },
+    {
+      "id": 4,
+      "title": "공지사항 제목",
+      "name": "김철수",
+      "date": "2023-12-09",
+      "content": "공지 내용"
     }
   ],
   "classes": [
@@ -80,12 +108,14 @@
         {
           "id": 1,
           "mainTitle": "웹개발응용",
+          "image": "./logo192.png",
+          "name": "홍길동",
+          "content": "기본적은 html, css, javascript를 배우고 리액트를 이용하여 간단한 홈페이지를 제작합니다",
           "classData": [
             {
               "id": 1,
-              "image": "./logo192.png",
               "title": "HTML / CSS / JavaScript",
-              "name": "최권택",
+              "name": "홍길동",
               "time": "화요일(11:50~14:20)",
               "step": "HTML, CSS, JS의 기초를 다룹니다.",
               "url": "https://www.youtube.com/embed/6GECT2Jrr_g"
@@ -94,7 +124,7 @@
               "id": 2,
               "image": "./logo192.png",
               "title": "React 설치",
-              "name": "최권택",
+              "name": "홍길동",
               "time": "화요일(11:50~14:20)",
               "step": "React를 설치해봅니다",
               "url": "https://www.youtube.com/embed/6GECT2Jrr_g"
@@ -103,7 +133,7 @@
               "id": 3,
               "image": "./logo192.png",
               "title": "React 기본 문법",
-              "name": "최권택",
+              "name": "홍길동",
               "time": "화요일(11:50~14:20)",
               "step": "React 기본 문법을 배우고 기초적인 웹을 만들어 봅니다",
               "url": "https://www.youtube.com/embed/6GECT2Jrr_g"
@@ -113,30 +143,30 @@
         {
           "id": 2,
           "mainTitle": "모바일 프로그래밍",
+          "name": "홍길동",
+          "image": "./logo192.png",
+          "content": "안드로이드 스튜디오를 이용해 간단한 계산기 app을 만들어 봅니다",
           "classData": [
             {
               "id": 1,
-              "image": "./logo192.png",
               "title": "안드로이드 스튜디오 설치",
-              "name": "양재형",
+              "name": "홍길동",
               "time": "화요일(14:30~17:20)",
               "step": "안드로이드 스튜디오와 자바를 설치합니다",
               "url": "https://www.youtube.com/embed/6GECT2Jrr_g"
             },
             {
               "id": 2,
-              "image": "./logo192.png",
               "title": "자바 문법",
-              "name": "양재형",
+              "name": "홍길동",
               "time": "화요일(14:30~17:20)",
               "step": "자바의 기본적인 문법과 이론을 공부합니다",
               "url": "https://www.youtube.com/embed/6GECT2Jrr_g"
             },
             {
               "id": 3,
-              "image": "./logo192.png",
               "title": "버튼 구현",
-              "name": "양재형",
+              "name": "홍길동",
               "time": "화요일(14:30~17:20)",
               "step": "실제 앱을 제작하기 위한 기본적은 버튼을 구현해봅니다",
               "url": "https://www.youtube.com/embed/6GECT2Jrr_g"
@@ -146,30 +176,30 @@
         {
           "id": 3,
           "mainTitle": "객체지향 프로그래밍",
+          "name": "홍길동",
+          "image": "./logo192.png",
+          "content": "C++을 이용하여 객체 지향에 대해 탐구하고, 객체 지향적 프로그래밍에 대해 배웁니다",
           "classData": [
             {
               "id": 1,
-              "image": "./logo192.png",
               "title": "C++ 기초 문법",
-              "name": "최병하",
+              "name": "홍길동",
               "time": "목요일(9:00~14:30)",
               "step": "C++에서 사용하는 기본 문법을 다룹니다",
               "url": "https://www.youtube.com/embed/6GECT2Jrr_g"
             },
             {
               "id": 2,
-              "image": "./logo192.png",
               "title": "C++ 제어문",
-              "name": "최병하",
+              "name": "홍길동",
               "time": "목요일(9:00~14:30)",
               "step": "C++에서 사용하는 if, switch, for, while, do-while을 배우고 응용합니다",
               "url": "https://www.youtube.com/embed/6GECT2Jrr_g"
             },
             {
               "id": 3,
-              "image": "./logo192.png",
               "title": "C++ 클래스와 함수",
-              "name": "최병하",
+              "name": "홍길동",
               "time": "목요일(9:00~14:30)",
               "step": "C++ 클래스와 함수를 이용하여 객체지향을 배워봅니다",
               "url": "https://www.youtube.com/embed/6GECT2Jrr_g"
@@ -185,109 +215,83 @@
         {
           "id": 1,
           "mainTitle": "가상현실프로그래밍",
+          "name": "김철수",
+          "image": "./logo192.png",
+          "content": "유니티를 이용하여 가상 현실 콘텐츠를 제작하는 방법을 배웁니다.",
           "classData": [
             {
               "id": 1,
-              "image": "./logo192.png",
               "title": "가상현실이란?",
-              "name": "김상옥",
-              "time": "월요일(13:00~16:30)",
+              "time": "월요일(18:04~16:30)",
               "step": "가상 현실이 무엇일까요",
               "url": "https://www.youtube.com/embed/6GECT2Jrr_g"
             },
             {
               "id": 2,
-              "image": "./logo192.png",
               "title": "유니티 설치",
-              "name": "백성용",
               "time": "월요일(13:00~16:30)",
               "step": "유니티를 통해 가상현실 게임 개발하기\n영상 수정",
               "url": "https://www.youtube.com/embed/vjhKzvhW-fc"
             },
             {
               "id": 3,
-              "image": "./logo192.png",
               "title": "VR장비 세팅",
-              "name": "백성용",
-              "time": "금요일(14:00~22:30)",
+              "time": "월요일(15:00~13:30)",
               "step": "오큘러스 퀘스트를 세팅합니다",
               "url": "https://www.youtube.com/embed/_tUDZdlehAk"
-            },
-            {
-              "id": 4,
-              "image": "./logo192.png",
-              "title": "제목",
-              "name": "이름",
-              "time": "목요일(11:00~00:01)",
-              "step": "강의 내용",
-              "urlStr": ""
-            },
-            {
-              "id": 5,
-              "image": "./logo192.png",
-              "title": "제목",
-              "name": "이름",
-              "time": "월요일(00:00~23:59)",
-              "step": "강의 내용",
-              "urlStr": "",
-              "url": "https://www.youtube.com/embed//www.youtube.com/"
             }
           ]
         },
         {
           "id": 2,
           "mainTitle": "인성과학문IV",
+          "name": "김철수",
+          "image": "./logo192.png",
+          "content": "인성과 학문을 쌓아 버리기",
           "classData": [
             {
               "id": 1,
-              "image": "./logo192.png",
               "title": "인성과학문 영상 강의",
-              "name": "강현우",
               "time": "목요일(14:40~15:30)",
               "step": "인성과학문",
               "url": "https://www.youtube.com/embed/6GECT2Jrr_g"
             },
             {
               "id": 2,
-              "image": "./logo192.png",
               "title": "인성과학문 영상 강의2",
-              "name": "강현우",
               "time": "목요일(14:40~15:30)",
               "step": "인성과학문2",
-              "url": "https://www.youtube.com/embed/6GECT2Jrr_g"
-            }
-          ]
-        },
-        {
-          "id": 3,
-          "mainTitle": "3D모델링",
-          "classData": [
-            {
-              "id": 1,
-              "image": "./logo192.png",
-              "title": "블렌더 설치",
-              "name": "신은하",
-              "time": "금요일(11:40~2:30)",
-              "step": "블렌더를 설치합니다",
-              "url": "https://www.youtube.com/embed/6GECT2Jrr_g"
-            },
-            {
-              "id": 2,
-              "image": "./logo192.png",
-              "title": "간단한 모델링",
-              "name": "신은하",
-              "time": "금요일(11:40~2:30)",
-              "step": "간단한 캐릭터를 모델링 합니다",
               "url": "https://www.youtube.com/embed/6GECT2Jrr_g"
             },
             {
               "id": 3,
-              "image": "./logo192.png",
-              "title": "리본 추가하기",
-              "name": "신은하",
-              "time": "금요일(11:40~2:30)",
-              "step": "모델링에 뼈를 추가하여 움직입니다.",
-              "url": "https://www.youtube.com/embed/6GECT2Jrr_g"
+              "title": "제목",
+              "time": "수요일(13:01~00:01)",
+              "step": "강의 내용",
+              "urlStr": "",
+              "url": "https://www.youtube.com/embed//www.youtube.com/"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "userID": 10300,
+      "data": [
+        {
+          "id": 1,
+          "mainTitle": "새로운 강의",
+          "image": "./logo192.png",
+          "name": "김상옥",
+          "content": "새로운 강의 내용",
+          "classData": [
+            {
+              "id": 1,
+              "title": "ㅇㄴㅁㅇㅁㄴ",
+              "time": "화요일(19:00~23:05)",
+              "step": "강의 내용ㅇㅁㄴㅁㄴㅇㄴㅇㅁㅁㄴ",
+              "url": "https://www.youtube.com/embed/u4IbY5B9DGY"
             }
           ]
         }

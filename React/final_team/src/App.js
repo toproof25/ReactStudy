@@ -4,6 +4,8 @@ import AppLogin from "./AppLogin.js";
 import AppMainPage from "./AppMainPage.js";
 import AppNotice from "./AppNotice.js";
 import AppMyPage from "./AppMyPage.js";
+import AppViewClass from "./AppViewClass.js";
+
 import axios from "axios";
 import "./css/App.css";
 
@@ -102,7 +104,8 @@ const Header = ({ login, setLogin, name, handleOnClickSetPage }) => {
         <ul id="header_nav">
           <li onClick={()=>handleOnClickSetPage("MainPage")}>메인 페이지</li>
           <li onClick={()=>handleOnClickSetPage("Notice")}>공지사항</li>
-          <li onClick={()=>handleOnClickSetPage("Class")}>강의 목록</li>
+          <li onClick={()=>handleOnClickSetPage("ViewClass")}>강의 조회</li>
+          <li onClick={()=>handleOnClickSetPage("Class")}>강의 수정</li>
           <li onClick={()=>handleOnClickSetPage("MyPage")}>마이페이지</li>
         </ul>
       </div>
@@ -122,9 +125,12 @@ const Main = ({ login, userId, name, setLogin, page, handleSetUserId }) => {
     return <AppNotice userId={userId} name={name} />
   } 
   else if (page === "Class") { // 강의목록 페이지
-    return <AppClassPage userId={userId} />;
+    return <AppClassPage userId={userId} userName={name} />;
   }
   else if (page === "MyPage") { // 마이 페이지
     return <AppMyPage userId={userId} />;
+  }
+  else if (page === "ViewClass") { // 강의 조회
+    return <AppViewClass userName={name} />;
   }
 };

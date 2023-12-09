@@ -74,7 +74,6 @@ export default function AppNotice({ name, userId }) {
       style={{
         height: '85%',
         backgroundColor: 'rgb(206, 206, 206)',
-        paddingTop: '30px',
       }}
     >
       <h1

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
+
 export default function AppLogin({ setLogin, handleSetUserId }) {
   const [users, setUsers] = useState([]);
 
@@ -11,7 +12,6 @@ export default function AppLogin({ setLogin, handleSetUserId }) {
       .catch(console.log);
   }, []);
 
-  console.log(users);
 
   return (
     <div id="login" style={{ height: '85%' }}>
@@ -28,10 +28,20 @@ export default function AppLogin({ setLogin, handleSetUserId }) {
   );
 }
 
-const Login = ({ setLogin, handleSetUserId, users, setUsers }) => {
-  // 로그인하는거 귀찮아서 초기값 입력해둠
-  const [loginID, setLoginID] = useState('qwer');
-  const [password, setPassword] = useState('qwer1234');
+function Login({ setLogin, handleSetUserId, users, setUsers }) {
+  const [loginID, setLoginID] = useState('');
+  const [password, setPassword] = useState('');
+
+  const [name, setName] = useState('');
+  const [address, setAddress] = useState('');
+  const [email, setEmail] = useState('');
+  const [phone, setPhone] = useState('');
+  const [gender, setGender] = useState('');
+  const [year, setYear] = useState('');
+  const [month, setMonth] = useState('');
+  const [day, setDay] = useState('');
+  const [newid, setID] = useState('');
+  const [newpassword, setnewPassword] = useState('');
 
   const handleLogin = () => {
     const user = users.find(
@@ -41,24 +51,30 @@ const Login = ({ setLogin, handleSetUserId, users, setUsers }) => {
       setLogin(true);
       handleSetUserId(user.userID);
     } else {
-      console.log('ID또는 비밀번호를 잘못 입력했습니다.');
+      alert('ID또는 비밀번호를 잘못 입력했습니다.');
     }
   };
 
   const handleRegister = () => {
+    // 기존 id에서 +1을 한 값을 사용
     const id = users[users.length - 1].id + 1;
+
+    // 회원고유번호
     const userID = users[users.length - 1].userID + 1;
 
     const createUser = {
       id,
       userID,
-      loginID: 'new',
-      password: '1234',
-      name: '회원가입',
-      email: '강남@kangnam.ac.kr',
-      year: '2002',
-      month: '1',
-      day: '12',
+      loginID: newid,
+      password: newpassword,
+      name,
+      address,
+      phone,
+      email,
+      gender,
+      year,
+      month,
+      day,
     };
 
     // 여기서 위 변수 createUser를  { ...createUser } 이렇게 구조분해로 보내주면 json에 정상적으로 추가가 됩니다.
@@ -66,15 +82,15 @@ const Login = ({ setLogin, handleSetUserId, users, setUsers }) => {
       .post('http://localhost:4000/users', { ...createUser })
       .then((response) => {
         setUsers([...users, response.data]);
-        console.log('회원가입이 완료되었습니다.', response.data);
+        alert('회원가입이 완료되었습니다.', response.data);
       })
       .catch((error) => {
-        console.error('회원가입에 실패했습니다.', error);
+        alert('회원가입에 실패했습니다.', error);
       });
   };
 
   return (
-    <div>
+    <div id="login" style={{ height: '85%' }}>
       <h1 style={{ fontSize: '40px' }}> 로그인하세요</h1>
       <div>
         <label>아이디 : </label>
@@ -109,36 +125,82 @@ const Login = ({ setLogin, handleSetUserId, users, setUsers }) => {
       <div>
         <label>사용할ID : </label>
         <input
-          type="loginID"
-          value={loginID}
+          type="newid"
+          value={newid}
+          onChange={(e) => setID(e.target.value)}
         />
       </div>
       <div>
         <label>비밀번호 : </label>
         <input
-          type="password"
-          value={password}
+          type="newpassword"
+          value={newpassword}
+          onChange={(e) => setnewPassword(e.target.value)}
         />
       </div>
       <div>
         <label>이름 : </label>
-        
+        <input
+          type="text"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+        />
+      </div>
+      <div>
+        <label>주소 : </label>
+        <input
+          type="text"
+          value={address}
+          onChange={(e) => setAddress(e.target.value)}
+        />
+      </div>
+      <div>
+        <label>핸드폰 번호 : </label>
+        <input
+          type="text"
+          value={phone}
+          onChange={(e) => setPhone(e.target.value)}
+        />
       </div>
       <div>
         <label>이메일 : </label>
-        
+        <input
+          type="text"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
+      </div>
+      <div>
+        <label>성별 : </label>
+        <input
+          type="text"
+          value={gender}
+          onChange={(e) => setGender(e.target.value)}
+        />
       </div>
       <div>
         <label>생년 : </label>
-        
+        <input
+          type="number"
+          value={year}
+          onChange={(e) => setYear(e.target.value)}
+        />
       </div>
       <div>
         <label>월 : </label>
-        
+        <input
+          type="number"
+          value={month}
+          onChange={(e) => setMonth(e.target.value)}
+        />
       </div>
       <div>
         <label>일 : </label>
-        
+        <input
+          type="number"
+          value={day}
+          onChange={(e) => setDay(e.target.value)}
+        />
       </div>
       <button
         style={{ width: '130px', height: '45px' }}
@@ -149,3 +211,4 @@ const Login = ({ setLogin, handleSetUserId, users, setUsers }) => {
     </div>
   );
 }
+

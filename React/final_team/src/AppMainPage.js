@@ -27,7 +27,6 @@ export default function AppMainPage({ userId }) {
   return (
     <div
       style={{
-        marginTop: '50px',
         height: '85%',
         backgroundColor: '#ffffff',
         color: '#000000',

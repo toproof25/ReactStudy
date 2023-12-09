@@ -2,20 +2,43 @@ import React, { useState, useEffect } from 'react';
 import "./css/AppClassPage.css";
 import axios from 'axios';
 
-export default function AppClassPage({userId}) {
+export default function AppClassPage({userName, userId}) {
   
+  const name = userName
+
   const [curPage, setCurPage] = useState("MyPage") // 현재 선택한 화면
   const [secondPage, setSecondPage] = useState(0) // 선택한 강의
   const [cl, setCl] = useState([])
 
+  useEffect(()=>{
+    console.log(cl)
+  }, [cl])
+
   useEffect(()=>{  
     getClaases()
+
+    
   }, [])
 
   const getClaases = () => {
     axios.get("http://localhost:4000/classes", {params: {userID: userId}})
     .then( response => setCl(response.data[0].data))
-    .catch(console.log)
+    .catch(()=>{
+      
+      axios.get("http://localhost:4000/classes")
+      .then( response => {
+        const id = response.data.length === 0 ? 1 : response.data[response.data.length - 1].id + 1;
+        const createData = {
+          id,
+          userID: userId,
+          data:[]
+        }
+        return createData
+      })
+      .then( createData => axios.post('http://localhost:4000/classes', createData))
+      .catch(console.log)
+      
+    })
   }
 
   // setCurPage, setSecondPage를 하나의 핸들함수로 수정
@@ -25,21 +48,23 @@ export default function AppClassPage({userId}) {
   }
 
   // 클래스 개설
-  const handleOnClickAddClass = (title) => {
+  const handleOnClickAddClass = ({title, content}) => {
 
     const mainTitle = title
     const id = cl.length === 0 ? 1 : cl[cl.length - 1].id + 1;
     const data = { 
       id,
       mainTitle, 
+      image: "./logo192.png", 
+      name,
+      content,
       classData: [
         { 
           id: 1, 
-          image: "./logo192.png", 
           title: "강의 제목", 
-          name: "이름", 
           time: "날짜/시간", 
-          step: "강의 내용" 
+          step: "강의 내용",
+          url: "https://www.youtube.com/"
         }
       ] 
     }
@@ -66,10 +91,10 @@ export default function AppClassPage({userId}) {
 
 
   // 클래스 수정
-  const handleOnClickUpdateClass = (id, mainTitle) => {
+  const handleOnClickUpdateClass = (id, mainTitle, content) => {
 
     const updateData =  cl.map( c => {
-      if(c.id === id) return {...c, mainTitle}
+      if(c.id === id) return {...c, mainTitle, content}
       else return c
     })
 
@@ -118,12 +143,12 @@ export default function AppClassPage({userId}) {
   }
 
   // 강의(수업) 개설
-  const handleOnClickAddClassData = ({id, image = "./logo192.png", title = '제목', name = '이름', time = '날짜/시간', step = "강의 내용", urlStr=''}) => {
+  const handleOnClickAddClassData = ({id, title = '제목', time = '날짜/시간', step = "강의 내용", urlStr=''}) => {
 
     const createClassData = cl.map( data => {
         if (data.id === id) {
           const classId = data.classData.length === 0 ? 1 : data.classData[data.classData.length - 1].id + 1;
-          return { ...data, classData: [...data.classData, { id:classId, image, title, name, time, step, urlStr }] }
+          return { ...data, classData: [...data.classData, { id:classId, title, name, time, step, urlStr }] }
         }
         return data
       } 
@@ -149,7 +174,7 @@ export default function AppClassPage({userId}) {
   }
 
   // 강의(수업 내용) 수정
-  const handleOnClickUpdateClassData = ({curPage, classId, title, name, time, step, urlStr='https://www.youtube.com/'}) => {
+  const handleOnClickUpdateClassData = ({curPage, classId, title, time, step, urlStr='https://www.youtube.com/'}) => {
 
     let url = urlStr
     if(url.indexOf('embed') === -1){
@@ -166,7 +191,7 @@ export default function AppClassPage({userId}) {
     const updateClassData = cl.map( data => {
         if (data.id === curPage) {
           return {...data, classData: data.classData.map( c => {
-            if (c.id === classId) return { ...c, title, name, time, step, url }
+            if (c.id === classId) return { ...c, title, time, step, url }
             else return c
           })
           }
@@ -235,7 +260,7 @@ export default function AppClassPage({userId}) {
           handleOnClickAddClass, handleOnClickUpdateClass, handleOnClickRemoveClass,
           handleOnClickAddClassData, handleOnClickUpdateClassData, handleOnClickRemoveClassData,
           handleOnClickMyPage,
-          cl, curPage, secondPage
+          cl, curPage, secondPage, name
         }} />
       </section>
     </span>
@@ -283,12 +308,12 @@ const NavList = ({ id = 0, mainTitle = '', handleOnClickMyPage, curNav, setCurNa
 // 강의   : 강의 안에 각 수업목록 : HTML, CSS, JS기본, React기초, React기본 문법 등등 (각 구성 목록)
 
 // 중앙 우측 ( 좌축: 강의 목록 / 우측 : 선택 강의 자세한 내용 )
-const MainPage = ({ curPage = 0, cl, secondPage, handleOnClickMyPage, handleOnClickAddClassData, handleOnClickUpdateClassData, handleOnClickRemoveClassData, handleOnClickAddClass, handleOnClickUpdateClass, handleOnClickRemoveClass }) => {
+const MainPage = ({ curPage = 0, cl, secondPage, name, handleOnClickMyPage, handleOnClickAddClassData, handleOnClickUpdateClassData, handleOnClickRemoveClassData, handleOnClickAddClass, handleOnClickUpdateClass, handleOnClickRemoveClass }) => {
 
   return (<div>
 
     <div id='MainPage' style={{width: curPage==='MyPage' ? '100%' : '50%'}}>
-      <ChangePage {...{ curPage, cl, handleOnClickMyPage, handleOnClickAddClassData, handleOnClickAddClass, handleOnClickUpdateClass, handleOnClickRemoveClass }} />
+      <ChangePage {...{ curPage, cl, name, handleOnClickMyPage, handleOnClickAddClassData, handleOnClickAddClass, handleOnClickUpdateClass, handleOnClickRemoveClass }} />
     </div>
     <div id='SecondPage' style={{width: curPage==='MyPage' ? '0%' : '50%'}}>
       <DetailPage {...{ curPage, cl, secondPage, handleOnClickRemoveClassData, handleOnClickUpdateClassData }} />
@@ -297,13 +322,13 @@ const MainPage = ({ curPage = 0, cl, secondPage, handleOnClickMyPage, handleOnCl
 }
 
 // 마이페이지, 각 클래스 화면을 띄움 ( 좌측 화면 )
-const ChangePage = ({ curPage = 0, cl, handleOnClickMyPage, handleOnClickAddClassData, handleOnClickAddClass, handleOnClickUpdateClass, handleOnClickRemoveClass }) => {
+const ChangePage = ({ curPage = 0, cl, handleOnClickMyPage, handleOnClickAddClassData, handleOnClickAddClass, handleOnClickUpdateClass, handleOnClickRemoveClass, name }) => {
   if (curPage === "MyPage") return <MyPage {...{ cl, handleOnClickAddClass, handleOnClickUpdateClass, handleOnClickRemoveClass }} />
   else {
     return (
       cl.map(
         (c) => {
-          if (c.id === curPage) return <ClassNumber key={c.id} {...{ id: c.id, title: c.mainTitle, classData: c.classData, handleOnClickMyPage, handleOnClickAddClassData }} />
+          if (c.id === curPage) return <ClassNumber key={c.id} {...{ id: c.id, title: c.mainTitle, classData: c.classData, handleOnClickMyPage, handleOnClickAddClassData, name, image: c.image }} />
           else return null
         })
     )
@@ -311,9 +336,8 @@ const ChangePage = ({ curPage = 0, cl, handleOnClickMyPage, handleOnClickAddClas
 }
 
 // 해당 클래스에 강의를 띄움 
-const ClassNumber = ({ id, title, classData, handleOnClickMyPage, handleOnClickAddClassData }) => {
+const ClassNumber = ({ id, title, image, name, classData, handleOnClickMyPage, handleOnClickAddClassData }) => {
   const [curClass, setCurClass] = useState(0);
-
   return (
     <div id='classNumber'>
       <h1 className='classTitle'>{title} 수업 목록</h1>
@@ -328,11 +352,11 @@ const ClassNumber = ({ id, title, classData, handleOnClickMyPage, handleOnClickA
                 handleOnClickMyPage({ secondPageData: cd.id });
                 setCurClass(cd.id)
             }}
-          > <ClassBox {...cd} /> </li>
+          > <ClassBox {...cd} name={name} image={image} /> </li>
         })}
 
         <div>
-          <UpdatePage id={id} handleOnClickAddClassData={handleOnClickAddClassData} />
+          <UpdatePage id={id} handleOnClickAddClassData={handleOnClickAddClassData} name={name} />
         </div>
       </ul>
 
@@ -341,11 +365,10 @@ const ClassNumber = ({ id, title, classData, handleOnClickMyPage, handleOnClickA
   );
 }
 // 강의 내용 추가 버튼 클릭 시 발생 / 강의를 추가하는 함수
-const UpdatePage = ({ id, handleOnClickAddClassData }) => {
+const UpdatePage = ({ id, handleOnClickAddClassData, name }) => {
   const [isUpdate, setIsUpdate] = useState(false);
 
   const [title, setTitle] = useState('제목');
-  const [name, setName] = useState('이름');
 
   const [select, setSelect] = useState('월') // 요일
   const [btime, setBtime] = useState('00:00') // 시작 시간
@@ -359,19 +382,23 @@ const UpdatePage = ({ id, handleOnClickAddClassData }) => {
             <td rowSpan={2}> 이미지 </td>
             <td> 제목 : <input type='text' size={10} value={title} onChange={(e) => setTitle(e.target.value)} /></td>
             <td rowSpan={2}> 
-              <select value={select} onChange={(e) => setSelect(e.target.value)}>
-                <option value='월'>월</option>
-                <option value='화'>화</option>
-                <option value='수'>수</option>
-                <option value='목'>목</option>
-                <option value='금'>금</option>
-              </select>
-              <input type='time' value={btime} onChange={(e) => setBtime(e.target.value)} />
-              <input type='time' value={atime} onChange={(e) => setAtime(e.target.value)} />
+              <div>
+                <span>요일/시간 : </span> 
+                <select value={select} onChange={(e) => setSelect(e.target.value)}>
+                  <option value='월'>월</option>
+                  <option value='화'>화</option>
+                  <option value='수'>수</option>
+                  <option value='목'>목</option>
+                  <option value='금'>금</option>
+                </select>
+              </div>
+              <input style={{width: '110px'}} type='time' value={btime} onChange={(e) => setBtime(e.target.value)} />
+              <input style={{width: '110px'}} type='time' value={atime} onChange={(e) => setAtime(e.target.value)} />
             </td>
           </tr>
           <tr>
-            <td> 이름 : <input type='text' size={10} value={name} onChange={(e) => setName(e.target.value)} /> </td>
+            이름 : {name}
+            {/*<td> 이름 : <input type='text' size={10} value={name} onChange={(e) => setName(e.target.value)} /> </td>*/}
           </tr>
         </tbody>
       </table>
@@ -380,7 +407,7 @@ const UpdatePage = ({ id, handleOnClickAddClassData }) => {
     <button className='addLecture' onClick={() => {
       setIsUpdate(false);
       handleOnClickAddClassData({id, title, name, time: select+"요일"+'('+btime+"~"+atime+')'});
-      setTitle('제목'); setName('이름'); setSelect('월'); setBtime('00:00'); setAtime('23:59');
+      setTitle('제목'); setSelect('월'); setBtime('00:00'); setAtime('23:59');
     }}>추가하기</button>
     <button className='addLecture' onClick={() => setIsUpdate(false)}>취소하기</button>
   </div>
@@ -417,7 +444,7 @@ const DetailPage = ({ curPage, secondPage, cl, handleOnClickRemoveClassData, han
           else {
             return (
               c.classData.map(data => {
-                if (data.id === secondPage) return <DetailUpdatePage key={data.id} {...{ curPage, secondPage, handleOnClickRemoveClassData, handleOnClickUpdateClassData, classData: data }} />
+                if (data.id === secondPage) return <DetailUpdatePage key={data.id} {...{ curPage, secondPage, image: c.image, name: c.name, handleOnClickRemoveClassData, handleOnClickUpdateClassData, classData: data }} />
                 else return null
               })
             )
@@ -429,12 +456,13 @@ const DetailPage = ({ curPage, secondPage, cl, handleOnClickRemoveClassData, han
   </div>)
 }
 // 강의 수정, 삭제 기능을 담당
-const DetailUpdatePage = ({ curPage, secondPage, classData, handleOnClickRemoveClassData, handleOnClickUpdateClassData }) => {
+const DetailUpdatePage = ({ curPage, secondPage, image, name, classData, handleOnClickRemoveClassData, handleOnClickUpdateClassData }) => {
 
   const [updateClass, setUpdateClass] = useState(false)
 
+  console.log(name)
+
   const [title, setTitle] = useState(classData.title)
-  const [name, setName] = useState(classData.name)
   const [step, setStep] = useState(classData.step)
   const [urlStr, setUrlStr] = useState(classData.url)
 
@@ -447,10 +475,11 @@ const DetailUpdatePage = ({ curPage, secondPage, classData, handleOnClickRemoveC
   if (updateClass) {
     return <div className='viewContent'>
       <div className='content'>
-        <div className='classTitle'><input type='text' value={title} onChange={(e) => setTitle(e.target.value)} /></div>
-        <div className='classImage'><img src={classData.image} alt='사진없음' /></div>
-        <div className='className'><input type='text' value={name} onChange={(e) => setName(e.target.value)} /></div>
+        <div className='classTitle'><span style={{fontSize: '20px'}}>제목 : </span><input type='text' value={title} onChange={(e) => setTitle(e.target.value)} /></div>
+        <div className='classImage'><img src={image} alt='사진없음' /></div>
+        <div className='className'><span style={{fontSize: '20px'}}>{name}</span></div>
 
+        <span style={{fontSize: '20px'}}>요일/시간 : </span>
         <select value={select} onChange={(e) => setSelect(e.target.value)}>
           <option value='월'>월</option>
           <option value='화'>화</option>
@@ -463,7 +492,7 @@ const DetailUpdatePage = ({ curPage, secondPage, classData, handleOnClickRemoveC
 
         
         <br /><hr /><br />
-        <div className='classUrl'><input type='url' value={urlStr} onChange={(e) => setUrlStr(e.target.value)} /></div>
+        <div className='classUrl'><span style={{fontSize: '20px'}}>url : </span><input type='url' value={urlStr} onChange={(e) => setUrlStr(e.target.value)} /></div>
         <div className='classContent'>강의 내용</div>
         <textarea
           value={step}
@@ -471,7 +500,7 @@ const DetailUpdatePage = ({ curPage, secondPage, classData, handleOnClickRemoveC
         </textarea>
       </div>
       <div className='UpdateDataBt'>
-        <button onClick={() => { handleOnClickUpdateClassData({curPage, classId: secondPage, title, name, time: select+"요일"+'('+btime+"~"+atime+')', step, urlStr}); setUpdateClass(false) }}>저장</button>
+        <button onClick={() => { handleOnClickUpdateClassData({curPage, classId: secondPage, title, time: select+"요일"+'('+btime+"~"+atime+')', step, urlStr}); setUpdateClass(false) }}>저장</button>
       </div>
     </div>
   }
@@ -479,8 +508,8 @@ const DetailUpdatePage = ({ curPage, secondPage, classData, handleOnClickRemoveC
     return <div className='viewContent'>
       <div className='content'>
         <div className='classTitle'>{classData.title}</div>
-        <div className='classImage'><img src={classData.image} alt='사진없음' /></div>
-        <div className='className'>{classData.name}</div>
+        <div className='classImage'><img src={image} alt='사진없음' /></div>
+        <div className='className'>{name}</div>
         <div className='classTime'>{classData.time}</div>
         <br /><hr /><br />
         <div>
@@ -498,7 +527,7 @@ const DetailUpdatePage = ({ curPage, secondPage, classData, handleOnClickRemoveC
   }
 }
 
-// 마이페이지 ( 강좌 정보 추가, 수정, 삭제 등)
+// 강의 마이페이지 ( 강좌 정보 추가, 수정, 삭제 등)
 const MyPage = ({ cl, handleOnClickAddClass, handleOnClickUpdateClass, handleOnClickRemoveClass }) => {
   return (
     <div id='MyClassPage'>
@@ -515,23 +544,34 @@ const MyPage = ({ cl, handleOnClickAddClass, handleOnClickUpdateClass, handleOnC
     </div>
   )
 }
-// 마이페이지 클래스 이름 수정
+// 강의 마이페이지 클래스 이름 수정
 const UpdateLecture = ({ cData, handleOnClickUpdateClass, handleOnClickRemoveClass }) => {
 
   const [isUpdate, setIsUpdate] = useState(false)
   const [mainTitle, setMainTitle] = useState(cData.mainTitle)
+  const [content, setContent] = useState(cData.content)
 
   if (isUpdate) return <li className='myPageClass'>
-    <span className='mainTitle'><input type='text' value={mainTitle} onChange={(e) => setMainTitle(e.target.value)} /></span>
-    <span className='maPageBt'><button onClick={() => { handleOnClickUpdateClass(cData.id, mainTitle); setIsUpdate(false) }}>저장</button></span>
+    <div className='mainTitle'>
+      <input type='text' value={mainTitle} onChange={(e) => setMainTitle(e.target.value)} />
+      <span className='maPageBt'><button onClick={() => { handleOnClickUpdateClass(cData.id, mainTitle, content); setIsUpdate(false) }}>저장</button></span>
+      <hr style={{margin: '5px 0'}}/>
+      <textarea value={content} onChange={(e) => setContent(e.target.value)} style={{backgroundColor: 'lightgray', width: '1000px', height: '63px', fontSize: '15px'}}>
+      </textarea>
+    </div>
+    
   </li>
-  else return <li className='myPageClass'>
+  else return <li className='myPageClass' style={{overflow: 'auto'}}>
     <div>
-      <span className='mainTitle'>{mainTitle}</span>
-      <span className='maPageBt'>
-        <button id="updateBt" onClick={() => setIsUpdate(true)}>수정</button>
-        <button id="removeBt" onClick={() => handleOnClickRemoveClass(cData.id)}>삭제</button>
-      </span>
+      <div className='mainTitle'>
+        [{mainTitle}]
+        <span className='maPageBt'>
+          <button id="updateBt" onClick={() => setIsUpdate(true)}>수정</button>
+          <button id="removeBt" onClick={() => handleOnClickRemoveClass(cData.id)}>삭제</button>
+        </span>
+      </div>
+      <hr />
+      <div><pre>{content}</pre></div>
     </div>
   </li>
 }
@@ -539,16 +579,18 @@ const UpdateLecture = ({ cData, handleOnClickUpdateClass, handleOnClickRemoveCla
 const AddLecture = ({ handleOnClickAddClass }) => {
   const [isAdd, setIsAdd] = useState(false);
   const [title, setTitle] = useState('강의 이름');
+  const [content, setContent] = useState('강의 설명')
 
   if (isAdd) return <div>
     <div className='classBox'>
       제목 <input type='text' size={10} value={title} onChange={(e) => setTitle(e.target.value)} />
+      <textarea value={content} onChange={(e) => setContent(e.target.value)} style={{backgroundColor: 'lightgray', width: '1000px', height: '63px', fontSize: '15px', margin: '5px'}}>
+      </textarea>
     </div>
 
     <button onClick={() => {
       setIsAdd(false);
-      handleOnClickAddClass(title === '' ? "강의 이름" : title);
-      //addClass(title === '' ? "강의 이름" : title);
+      handleOnClickAddClass({title, content});
       setTitle('강의 이름');
     }}>추가하기</button>
     <button onClick={() => setIsAdd(false)}>취소하기</button>
