@@ -24,14 +24,14 @@ header img{
   position: absolute;
   width: 100px;
   left: 30px;
-  top: 30px;
+  top: 15px;
 }
 /* 상단 제목 위치 조절 */
 header h1{
   position: absolute;
   font-size: 70px;
   left: 150px;
-  top: 30px;
+  top: 15px;
 }
 /* 상단 로그인 버튼 위치, 모양, 크기 조절 */
 header #login{

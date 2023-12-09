@@ -24,12 +24,12 @@ export default function AppViewClass() {
       <div style={{padding: '20px 15px 0 100px'}}>
 
         {
-          classData.map( (cd, index) => { 
+          classData.map( (cd) => { 
             if(cd.length === 0) return null
             else return(
               <div key={cd.id} style={{width: '100%', marginBottom: '10px'}}>
                 <h1>{cd[0].name} 강의</h1>
-                <div style={{overflow: 'hidden'}}>{cd.map( data => <ViewClass key={data.id} {...data} />)}</div>
+                <div style={{overflow: 'hidden'}}>{cd.map( data => <ViewClass key={data.id} {...data} image={data.image} />)}</div>
                 <hr />
               </div>
             )}
@@ -57,7 +57,7 @@ const ViewClass = ({image, mainTitle, name, content}) => {
       onMouseEnter={()=>setTest(true)}
       onMouseLeave={()=>setTest(false)}
     >
-      <img src='./logo192.png' alt='사진오류' style={{width: '200px'}} />
+      <div style={{height: '200px'}}><img src={image} alt='사진오류' style={{width: '200px'}} /></div>
       <div style={{fontSize: '20px', fontWeight:'bold', marginLeft: '5px'}} ><span>{mainTitle}</span></div>
       <div style={{fontSize: '14px', marginLeft: '5px', marginTop:'10px'}} ><span >{name}</span></div>
 

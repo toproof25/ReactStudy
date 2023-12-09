@@ -32,30 +32,25 @@ export default function AppMainPage({ userId }) {
         color: '#000000',
       }}
     >
-      <div>
-        <div style={{overflow: 'hidden'}}>
-          {images.map((image) => (
-            <div
-              key={image.id}
-              style={{ marginRight: '20px', marginLeft: '20px', float: 'left' }}
-            >
-              <img
-                src={image.uri}
-                alt={image.title}
-                style={{ width: 350, height: 350, marginBottom: 20 }}
-              />
-            </div>
-          ))}
+      <div >
+        <div style={{margin: '0 auto', width: '1000px', textAlign: 'center'}}>
+
+        <img
+          src='main.png'
+          alt='메인 이미지'
+          style={{ width: '1000px', marginTop: '30px'}}
+        />
+
         </div>
       </div>
       <div
         style={{
           display: 'flex',
-          marginTop: '100px',
+          marginTop: '50px',
         }}
       >
         {/* 공지사항 */}
-        <div>
+        <div >
           <h2 style={{ fontSize: '70px' }}>공지사항</h2>
           <div
             style={{
@@ -64,26 +59,26 @@ export default function AppMainPage({ userId }) {
               height: '10px',
             }}
           ></div>
-          <table>
+          <table >
             <thead>
               {/* 공지사항 목록 */}
               <tr>
-                <th style={{ fontSize: '40px', padding: '0 20px' }}>ID</th>
-                <th style={{ fontSize: '40px', padding: '0 20px' }}>Title</th>
-                <th style={{ fontSize: '40px', padding: '0 20px' }}>Name</th>
+                <th style={{ fontSize: '40px', padding: '0 10px', width: '200px' }}>번호</th>
+                <th style={{ fontSize: '40px', padding: '0 10px', width: '600px' }}>제목</th>
+                <th style={{ fontSize: '40px', padding: '0 10px', width: '200px' }}>작성자</th>
               </tr>
             </thead>
-            <tbody>
+            <tbody >
               {notice.map((n) => (
-                <tr key={n.id}>
+                <tr key={n.id} style={{height:'60px'}}>
                   {/* 공지사항 세부사항 */}
-                  <td style={{ fontSize: '20px', padding: '0 30px' }}>
+                  <td style={{ fontSize: '20px', padding: '0 30px', textAlign: 'center' }}>
                     {n.id}
                   </td>
-                  <td style={{ fontSize: '20px', padding: '0 30px' }}>
+                  <td style={{ fontSize: '20px', padding: '0 30px', textAlign: 'center' }}>
                     {n.title}
                   </td>
-                  <td style={{ fontSize: '20px', padding: '0 30px' }}>
+                  <td style={{ fontSize: '20px', padding: '0 30px', textAlign: 'center' }}>
                     {n.name}
                   </td>
                 </tr>
@@ -92,12 +87,12 @@ export default function AppMainPage({ userId }) {
           </table>
         </div>
         {/*학사일정*/}
-        <div style={{ marginLeft: '120px' }}>
-          <h2 style={{ fontSize: '70px' }}>학사일정</h2>
+        <div style={{ marginLeft: '100px' }}>
+          <h2 style={{ fontSize: '70px' }}>업데이트</h2>
           <div
             style={{
               backgroundColor: '#32CD32',
-              width: '750px',
+              width: '100%',
               height: '10px',
             }}
           ></div>
@@ -106,17 +101,17 @@ export default function AppMainPage({ userId }) {
             <thead>
               <tr>
                 <th style={{ fontSize: '40px', padding: '0 20px' }}>Date</th>
-                <th style={{ fontSize: '40px', padding: '0 20px' }}>Event</th>
+                <th style={{ fontSize: '40px', padding: '0 20px' }}>Update</th>
               </tr>
             </thead>
             <tbody>
               {day.map((n) => (
-                <tr key={n.ID}>
+                <tr key={n.ID} style={{height:'60px'}}>
                   {/* 학사일정 내용 */}
-                  <td style={{ fontSize: '20px', padding: '0 30px' }}>
+                  <td style={{ fontSize: '16px', textAlign: 'center', padding: '0 30px', width: '20%' }}>
                     {n.date}
                   </td>
-                  <td style={{ fontSize: '20px', padding: '0 30px' }}>
+                  <td style={{ fontSize: '16px', padding: '0 30px', width: '80%' }}>
                     {n.event}
                   </td>
                 </tr>

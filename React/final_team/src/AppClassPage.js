@@ -421,7 +421,7 @@ const ClassBox = ({ image = '', title = '제목', name = '이름', time = '날�
       <table className='tableBox'>
         <tbody>
           <tr>
-            <td rowSpan={2}><img src={image} alt='이미지 없음' width={'100px'} /></td>
+            <td rowSpan={2} ><img src={image} alt='이미지 없음' style={{width: '100%'}} /></td>
             <td> {title} </td>
             <td rowSpan={2}>{time}</td>
           </tr>

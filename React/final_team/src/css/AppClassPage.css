@@ -94,10 +94,10 @@ section #MainPage li.classBox{
   background-color: white;
   border: 4px solid black;
   width: 100%;
-  height: 100px;
+  height: 150px;
   font-size: large;
   overflow: hidden;
-  margin-bottom: 5px;
+  margin-bottom: 15px;
 }
 /* 각 수업 목록 hover*/
 section #MainPage li.classBox:hover{
@@ -107,13 +107,13 @@ section #MainPage li.classBox:hover{
 /* 각 수업 목록 박스 table태그로 이루어짐 */
 table.tableBox{
   border-collapse: collapse;
-  width: 100%;
-  height: 100%;
+  height: 150px;
   text-align: center;
 }
 /* 1번째 열 너비 20% */
 table.tableBox td:nth-child(1){ /* 이미지 */
-  width: 10%;
+  width: 20%;
+  
 }
 /* 2번째 열 너비 50% */
 table.tableBox td:nth-child(2){ /* 제목, 이름 */
@@ -121,7 +121,7 @@ table.tableBox td:nth-child(2){ /* 제목, 이름 */
 }
 /* 3번째 열 너비 30% */
 table.tableBox td:nth-child(3){ /* 시간 */
-  width: 40%;
+  width: 30%;
 }
 
 /* (강의 추가) 버튼 누르면 나오는 태그들   */

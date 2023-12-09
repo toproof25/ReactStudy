@@ -27,77 +27,63 @@
       "year": 1999,
       "month": 10,
       "day": 5
-    },
-    {
-      "id": 3,
-      "userID": 10300,
-      "loginID": "asdf",
-      "password": "asdf1234",
-      "name": "김상옥",
-      "address": "용인시",
-      "phone": "01012345678",
-      "email": "asdf@naver.com",
-      "gender": "남자",
-      "year": "2000",
-      "month": "9",
-      "day": "22"
     }
   ],
   "day": [
     {
       "ID": 1,
-      "date": "09.01(금)~12.31(일)",
-      "event": "예비졸업심사결과조회기간"
+      "date": "2023-09-01",
+      "event": "새로운 강의 평가 및 피드백 시스템이 도입되었습니다. 이제부터 예비졸업 심사 결과를 확인하고 의견을 공유하세요."
     },
     {
       "ID": 2,
-      "date": "12.06(수)~12.08(금)",
-      "event": "계절학기 수강신청 변경기간"
+      "date": "2023-12-06",
+      "event": "수업 평가 및 강의 리뷰 서비스가 개선되었습니다."
     },
     {
       "ID": 3,
-      "date": "12.08(금)~12.14(목)",
-      "event": "기말시험기간"
+      "date": "2023-12-08",
+      "event": "신규 콘텐츠 및 실습 과제가 추가되었습니다. 학습 경험을 향상시키기 위해 새로운 내용에 도전하세요."
     },
     {
       "ID": 4,
-      "date": "12.18(월)~02.29(목)",
-      "event": "동계방학기간"
+      "date": "2023-12-18",
+      "event": "신규 강의와 코스가 추가되었습니다. 원하는 분야에서 더 깊이 학습하고자 하는 학생들을 위한 다양한 옵션이 제공됩니다."
     },
     {
       "ID": 5,
-      "date": "12.26(화)~12.29(금)",
-      "event": "성적확인및정정기간"
+      "date": "2023-12-26",
+      "event": "그룹 프로젝트 플랫폼이 개설되었습니다. 성적 및 피드백을 공유하며 더 나은 학습을 경험하세요."
     }
   ],
   "notice": [
     {
       "id": 1,
-      "title": "123",
-      "name": "작성자",
+      "title": "중요 공지: 서비스 업그레이드 안내",
+      "name": "관리자",
       "date": "2023-11-16",
-      "content": "312321123"
+      "content": "안녕하세요, 강의 플랫폼 사용자 여러분! 저희는 서비스 업그레이드를 진행 중이며, 이에 따라 일시적인 서비스 중단이 예정되어 있습니다. 양해 부탁드립니다."
     },
     {
       "id": 2,
-      "title": "수정할 제목",
-      "name": "작성자22",
+      "title": "새로운 강의 소식: 신규 강좌 출시 안내",
+      "name": "홍길동",
       "date": "2023-11-18",
-      "content": "414132413134134"
+      "content": "새로운 강의가 출시되었습니다! 이번 강좌는 전문 강사진과 함께하는 독특한 콘텐츠로, 여러분의 학습을 더욱 풍부하게 만들어 줄 것입니다. 지금 확인해보세요!"
     },
     {
       "id": 3,
-      "title": "공지사항 제목",
+      "title": "기존 강의 업데이트 안내",
       "name": "김철수",
-      "date": "2023-12-09",
-      "content": "공지 내용"
+      "date": "2023-11-29",
+      "content": "기존 강의 중에서 업데이트가 진행되었습니다. 최신 내용 및 추가 자료를 확인하시고, 더 나은 학습 경험을 누려보세요."
     },
     {
       "id": 4,
-      "title": "공지사항 제목",
+      "title": "이번 주의 핵심 포인트 안내",
       "name": "김철수",
-      "date": "2023-12-09",
-      "content": "공지 내용"
+      "date": "2023-12-01",
+      "content": "이번 주 강의에서 다룰 핵심 내용을 미리 알려드립니다. 주요 포인트를 숙지하고 강의에 참여하여 더욱 효과적인 학습을 경험하세요."
     }
   ],
   "classes": [
@@ -115,25 +101,20 @@
             {
               "id": 1,
               "title": "HTML / CSS / JavaScript",
-              "name": "홍길동",
               "time": "화요일(11:50~14:20)",
               "step": "HTML, CSS, JS의 기초를 다룹니다.",
-              "url": "https://www.youtube.com/embed/6GECT2Jrr_g"
+              "url": "https://www.youtube.com/embed/8kJwTrs6e-4"
             },
             {
               "id": 2,
-              "image": "./logo192.png",
               "title": "React 설치",
-              "name": "홍길동",
               "time": "화요일(11:50~14:20)",
               "step": "React를 설치해봅니다",
-              "url": "https://www.youtube.com/embed/6GECT2Jrr_g"
+              "url": "https://www.youtube.com/embed/00yJy7W0DQE"
             },
             {
               "id": 3,
-              "image": "./logo192.png",
               "title": "React 기본 문법",
-              "name": "홍길동",
               "time": "화요일(11:50~14:20)",
               "step": "React 기본 문법을 배우고 기초적인 웹을 만들어 봅니다",
               "url": "https://www.youtube.com/embed/6GECT2Jrr_g"
@@ -144,32 +125,29 @@
           "id": 2,
           "mainTitle": "모바일 프로그래밍",
           "name": "홍길동",
-          "image": "./logo192.png",
+          "image": "./mobile.jpg",
           "content": "안드로이드 스튜디오를 이용해 간단한 계산기 app을 만들어 봅니다",
           "classData": [
             {
               "id": 1,
               "title": "안드로이드 스튜디오 설치",
-              "name": "홍길동",
               "time": "화요일(14:30~17:20)",
               "step": "안드로이드 스튜디오와 자바를 설치합니다",
-              "url": "https://www.youtube.com/embed/6GECT2Jrr_g"
+              "url": "https://www.youtube.com/embed/ESBCIgXtVWw"
             },
             {
               "id": 2,
-              "title": "자바 문법",
-              "name": "홍길동",
+              "title": "위젯 설치",
               "time": "화요일(14:30~17:20)",
-              "step": "자바의 기본적인 문법과 이론을 공부합니다",
-              "url": "https://www.youtube.com/embed/6GECT2Jrr_g"
+              "step": "xml파일로 위젯을 설치합니",
+              "url": "https://www.youtube.com/embed/TtzCEja8HSQ"
             },
             {
               "id": 3,
               "title": "버튼 구현",
-              "name": "홍길동",
               "time": "화요일(14:30~17:20)",
               "step": "실제 앱을 제작하기 위한 기본적은 버튼을 구현해봅니다",
-              "url": "https://www.youtube.com/embed/6GECT2Jrr_g"
+              "url": "https://www.youtube.com/embed/ngmjy5DFu8E"
             }
           ]
         },
@@ -177,31 +155,120 @@
           "id": 3,
           "mainTitle": "객체지향 프로그래밍",
           "name": "홍길동",
-          "image": "./logo192.png",
+          "image": "./cpp.jpg",
           "content": "C++을 이용하여 객체 지향에 대해 탐구하고, 객체 지향적 프로그래밍에 대해 배웁니다",
           "classData": [
             {
               "id": 1,
               "title": "C++ 기초 문법",
-              "name": "홍길동",
               "time": "목요일(9:00~14:30)",
               "step": "C++에서 사용하는 기본 문법을 다룹니다",
-              "url": "https://www.youtube.com/embed/6GECT2Jrr_g"
+              "url": "https://www.youtube.com/embed/L4xq7Fb90qg"
             },
             {
               "id": 2,
               "title": "C++ 제어문",
-              "name": "홍길동",
               "time": "목요일(9:00~14:30)",
               "step": "C++에서 사용하는 if, switch, for, while, do-while을 배우고 응용합니다",
-              "url": "https://www.youtube.com/embed/6GECT2Jrr_g"
+              "url": "https://www.youtube.com/embed/gEEhXREFlOU"
             },
             {
               "id": 3,
               "title": "C++ 클래스와 함수",
-              "name": "홍길동",
               "time": "목요일(9:00~14:30)",
               "step": "C++ 클래스와 함수를 이용하여 객체지향을 배워봅니다",
+              "url": "https://www.youtube.com/embed/0YEz8s9MrQk"
+            }
+          ]
+        },
+        {
+          "id": 4,
+          "mainTitle": "웹개발기초",
+          "name": "홍길동",
+          "image": "./html.jpg",
+          "content": "HTML, CSS를 이해하며 웹 기초에 대해 공부합니다",
+          "classData": [
+            {
+              "id": 1,
+              "title": "HTML이란?",
+              "time": "월요일(10:00~12:00)",
+              "step": "HTML이 무엇인지 알아봅니다",
+              "url": "https://www.youtube.com/embed/8kJwTrs6e-4"
+            },
+            {
+              "id": 2,
+              "title": "자주 사용하는 태그",
+              "time": "월요일(10:00~12:00)",
+              "step": "자주 사용하는 h1, div, span 등.. 태그를 직접 사용합니다",
+              "url": "https://www.youtube.com/embed/ruAhtJ0TT-Q"
+            }
+          ]
+        },
+        {
+          "id": 5,
+          "mainTitle": "자바 입문",
+          "name": "홍길동",
+          "image": "./Java.png",
+          "content": "프로그래밍에 처음 입문하는 분들을 위한 자바 강의입니다. 코드를 따라하면서 손쉽게 자바를 배울 수 있습니다.",
+          "classData": [
+            {
+              "id": 1,
+              "title": "강의 소개",
+              "time": "금요일(14:00~16:30)",
+              "step": "수업 자료와 강의 진행 방식 및 개발 환경을 설정합니다",
+              "url": "https://www.youtube.com/embed/L4R8h_Olj0Y"
+            },
+            {
+              "id": 2,
+              "title": "Hello World",
+              "time": "목요일(14:00~16:30)",
+              "step": "자바를 이용하여 문자열을 출력해봅니다",
+              "url": "https://www.youtube.com/embed/rijnU56-dbQ"
+            }
+          ]
+        },
+        {
+          "id": 6,
+          "mainTitle": "자료구조 및 알고리즘",
+          "name": "홍길동",
+          "image": "./jaryo.jpg",
+          "content": "자료구조와 알고리즘을 공부하여 실제 코드에도 적용해봅니다.",
+          "classData": [
+            {
+              "id": 1,
+              "title": "자료구조란?",
+              "time": "목요일(11:40~14:30)",
+              "step": "자료구조가 무엇인지 알아보고, 리스트, 배열, 스택 ,큐의 차이점을 이해합니다",
+              "url": "https://www.youtube.com/embed/bh23BDYOry8"
+            },
+            {
+              "id": 2,
+              "title": "스택",
+              "time": "목요일(11:40~14:30)",
+              "step": "스택을 구현하고 직접 프로그램을 작성해봅니다",
+              "url": "https://www.youtube.com/embed/GnvLJ3qB6lE"
+            }
+          ]
+        },
+        {
+          "id": 7,
+          "mainTitle": "게임엔진기초",
+          "name": "홍길동",
+          "image": "./unity.png",
+          "content": "유니티의 기초를 익혀 간단한 게임을 제작합니다",
+          "classData": [
+            {
+              "id": 1,
+              "title": "개발환경 설정",
+              "time": "목요일(13:00~15:30)",
+              "step": "유니티를 설치하고 간단한 사용법을 익혀봅니다",
+              "url": "https://www.youtube.com/embed/6GECT2Jrr_g"
+            },
+            {
+              "id": 2,
+              "title": "오브젝트 추가",
+              "time": "목요일(13:00~15:30)",
+              "step": "큐브, 원 등 기본적인 오브젝트를 추가하고, Trasform에 대해 공부합니다",
               "url": "https://www.youtube.com/embed/6GECT2Jrr_g"
             }
           ]
@@ -216,82 +283,45 @@
           "id": 1,
           "mainTitle": "가상현실프로그래밍",
           "name": "김철수",
-          "image": "./logo192.png",
+          "image": "./vr.jpg",
           "content": "유니티를 이용하여 가상 현실 콘텐츠를 제작하는 방법을 배웁니다.",
           "classData": [
             {
               "id": 1,
               "title": "가상현실이란?",
-              "time": "월요일(18:04~16:30)",
+              "time": "월요일(13:00~16:30)",
               "step": "가상 현실이 무엇일까요",
-              "url": "https://www.youtube.com/embed/6GECT2Jrr_g"
+              "url": "https://www.youtube.com/embed/8IsdCz1U5uM"
             },
             {
               "id": 2,
               "title": "유니티 설치",
               "time": "월요일(13:00~16:30)",
               "step": "유니티를 통해 가상현실 게임 개발하기\n영상 수정",
-              "url": "https://www.youtube.com/embed/vjhKzvhW-fc"
+              "url": "https://www.youtube.com/embed/VDXDQfRdJWQ"
             },
             {
               "id": 3,
               "title": "VR장비 세팅",
-              "time": "월요일(15:00~13:30)",
+              "time": "월요일(11:00~12:30)",
               "step": "오큘러스 퀘스트를 세팅합니다",
-              "url": "https://www.youtube.com/embed/_tUDZdlehAk"
+              "url": "https://www.youtube.com/embed/EjWIsfFLRg0"
             }
           ]
         },
         {
           "id": 2,
-          "mainTitle": "인성과학문IV",
+          "mainTitle": "3D모델링",
           "name": "김철수",
-          "image": "./logo192.png",
-          "content": "인성과 학문을 쌓아 버리기",
+          "image": "./blender.jpg",
+          "content": "블랜더를 이용하여 직접 캐릭터를 모델링, 애니메이션을 제작합니다",
           "classData": [
             {
               "id": 1,
-              "title": "인성과학문 영상 강의",
+              "title": "블렌더 맛보기",
               "time": "목요일(14:40~15:30)",
-              "step": "인성과학문",
-              "url": "https://www.youtube.com/embed/6GECT2Jrr_g"
-            },
-            {
-              "id": 2,
-              "title": "인성과학문 영상 강의2",
-              "time": "목요일(14:40~15:30)",
-              "step": "인성과학문2",
-              "url": "https://www.youtube.com/embed/6GECT2Jrr_g"
-            },
-            {
-              "id": 3,
-              "title": "제목",
-              "time": "수요일(13:01~00:01)",
-              "step": "강의 내용",
-              "urlStr": "",
-              "url": "https://www.youtube.com/embed//www.youtube.com/"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "id": 3,
-      "userID": 10300,
-      "data": [
-        {
-          "id": 1,
-          "mainTitle": "새로운 강의",
-          "image": "./logo192.png",
-          "name": "김상옥",
-          "content": "새로운 강의 내용",
-          "classData": [
-            {
-              "id": 1,
-              "title": "ㅇㄴㅁㅇㅁㄴ",
-              "time": "화요일(19:00~23:05)",
-              "step": "강의 내용ㅇㅁㄴㅁㄴㅇㄴㅇㅁㅁㄴ",
-              "url": "https://www.youtube.com/embed/u4IbY5B9DGY"
+              "step": "환경 설정, 각 레이아웃 기능, 오브젝트 추가를 해봅니다",
+              "url": "https://www.youtube.com/embed/7FPaJpwzdjU"
             }
           ]
         }
