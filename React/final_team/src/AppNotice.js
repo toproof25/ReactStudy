@@ -7,7 +7,6 @@ export default function AppNotice({ name, userId }) {
 
   const [notice, setNotice] = useState([]);
   const [current, setCurrent] = useState(0);
-  const [text, setText] = useState('');
   const [page, setPage] = useState('main');
 
   const getNotice = () => {
@@ -21,12 +20,7 @@ export default function AppNotice({ name, userId }) {
   useEffect(() => {
     getNotice();
   }, []);
-  useEffect(() => {
-    axios
-      .get('http://localhost:4000/notice/' + current)
-      .then((response) => setText(response.data.content))
-      .catch(console.log);
-  }, [current]);
+
 
   //공지사항 삭제
   const handleOnclickRemoveNotice = (id) => {
@@ -81,7 +75,7 @@ export default function AppNotice({ name, userId }) {
       >
         공지사항 페이지
       </h1>
-      {page == 'main' && (
+      {page === 'main' && (
         <Main
           setPage={setPage}
           notice={notice}
@@ -91,7 +85,7 @@ export default function AppNotice({ name, userId }) {
           handleOnClickUpdateNotice={handleOnClickUpdateNotice}
         />
       )}
-      {page == 'page2' && <Test text={text} setPage={setPage} />}
+      {page === 'page2' && <Test current={current} setPage={setPage} />}
     </div>
   );
 }
@@ -151,7 +145,15 @@ const Main = ({
     </div>
   );
 };
-const Test = ({ text, setPage }) => {
+const Test = ({ current, setPage }) => {
+
+  const [text, setText] = useState('');
+
+  axios
+    .get('http://localhost:4000/notice/' + current)
+    .then((response) => setText(response.data.content))
+    .catch(console.log);
+
   return (
     <div>
       <button
