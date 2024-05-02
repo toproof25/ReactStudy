@@ -306,6 +306,14 @@
               "time": "월요일(11:00~12:30)",
               "step": "오큘러스 퀘스트를 세팅합니다",
               "url": "https://www.youtube.com/embed/EjWIsfFLRg0"
+            },
+            {
+              "id": 4,
+              "title": "제목",
+              "name": "김철수",
+              "time": "월요일(00:00~00:01)",
+              "step": "강의 내용",
+              "urlStr": ""
             }
           ]
         },
