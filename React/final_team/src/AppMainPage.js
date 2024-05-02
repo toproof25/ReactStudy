@@ -69,11 +69,11 @@ export default function AppMainPage({ userId }) {
               </tr>
             </thead>
             <tbody >
-              {notice.map((n) => (
+              {notice.map((n, index) => (
                 <tr key={n.id} style={{height:'60px'}}>
                   {/* 공지사항 세부사항 */}
                   <td style={{ fontSize: '20px', padding: '0 30px', textAlign: 'center' }}>
-                    {n.id}
+                    {index+1}
                   </td>
                   <td style={{ fontSize: '20px', padding: '0 30px', textAlign: 'center' }}>
                     {n.title}

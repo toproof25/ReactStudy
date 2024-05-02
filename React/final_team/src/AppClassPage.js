@@ -62,7 +62,7 @@ export default function AppClassPage({userName, userId}) {
         { 
           id: 1, 
           title: "강의 제목", 
-          time: "날짜/시간", 
+          time: "월요일(00:00~00:01)", 
           step: "강의 내용",
           url: "https://www.youtube.com/"
         }
@@ -143,7 +143,7 @@ export default function AppClassPage({userName, userId}) {
   }
 
   // 강의(수업) 개설
-  const handleOnClickAddClassData = ({id, title = '제목', time = '날짜/시간', step = "강의 내용", urlStr=''}) => {
+  const handleOnClickAddClassData = ({id, title = '제목', time = '월요일(00:00~00:01)', step = "강의 내용", urlStr=''}) => {
 
     const createClassData = cl.map( data => {
         if (data.id === id) {

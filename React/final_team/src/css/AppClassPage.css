@@ -113,7 +113,6 @@ table.tableBox{
 /* 1번째 열 너비 20% */
 table.tableBox td:nth-child(1){ /* 이미지 */
   width: 20%;
-  
 }
 /* 2번째 열 너비 50% */
 table.tableBox td:nth-child(2){ /* 제목, 이름 */
@@ -129,7 +128,7 @@ section #MainPage div#classNumber div.classBox{
   background-color: #ccc;
   border: 4px solid #f00000;
   width: 100%;
-  height: 100px;
+  height: 150px;
   font-size: large;
   overflow: hidden;
   margin-bottom: 5px;
